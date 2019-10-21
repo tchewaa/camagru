@@ -1,0 +1,282 @@
+body {
+    background: #f5f5f5;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 100%;
+    padding-right: -15px;
+    padding-left: -15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.row {
+    margin: 0 auto;
+    width: 80%;
+}
+
+header h1 {
+    text-align: center;
+    padding: 1em;
+}
+
+.menu {
+    text-align: right;
+}
+
+nav {
+    background: cadetblue;
+}
+
+.sign-in {
+    padding: 4px !important;
+    background: wheat !important;
+    color: cadetblue !important;
+}
+
+.menu ul {
+    list-style-type: none;
+}
+
+.logo {
+    display: inline-block;
+    float: left;
+    line-height: 60px;
+    color: wheat;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.icon {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 10px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 3px solid wheat;
+}
+
+.menu ul li {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 0.5em;
+    font-size: 15px;
+    display: inline-block;
+    color: wheat;
+    line-height: 50px;
+    font-weight: bold;
+    height: 50px;
+    background: cadetblue;
+}
+
+.menu ul li a:hover {
+    color: goldenrod
+}
+
+.menu ul ul a {
+    display: none;
+}
+
+.menu ul ul li a {
+    display: none;
+    display: inline-block;
+}
+
+.menu ul li:hover>ul {
+    display: block;
+    position: absolute;
+}
+
+.menu ul ul {
+    width: 10px;
+    /* margin: -10px; */
+    padding-left: 0px;
+    margin-left: -10px;
+    margin-top: 10px;
+}
+
+.jumbotron {
+    background: #dbdbdb;
+    height: 550px;
+    background: url('images/sk1.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.minijumbo {
+    background: #dbdbdb;
+    height: 150px;
+    background: url('images/images.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.jumbotron-heading {
+    color: wheat;
+    font-size: 50px;
+    font-weight: bold;
+    top: 300px;
+    position: absolute;
+    background: cadetblue;
+    padding: 10px;
+}
+
+.intro {
+    background: cadetblue;
+    height: 450px;
+    text-align: center;
+}
+
+.header-trends {
+    font-weight: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 25px;
+    margin-bottom: 10px;
+    color: wheat;
+}
+
+.home-categories {
+    background: #f5f5f5;
+    height: 450px;
+    text-align: center;
+}
+
+.header-cate {
+    font-weight: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 25px;
+    color: cadetblue;
+    margin-bottom: 10px;
+}
+
+.register-class {
+    background: #f5f5f5;
+    height: auto;
+    padding: 20px;
+}
+
+.register-header {
+    font-weight: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 25px;
+    color: cadetblue;
+    margin-bottom: 10px;
+}
+
+.reg-form {
+    border: 1px solid #eeeeee;
+    text-align: left;
+}
+
+.primary-button {
+    background: cadetblue;
+    color: wheat;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.footer {
+    background: #f5f5f5;
+    height: 200px;
+}
+
+.card {
+    width: 25%;
+    background: white;
+    padding: 5px;
+    display: inline-block;
+    text-align: center
+}
+
+.card-image {
+    padding: 10px;
+}
+
+.card-info {
+    padding: 5px;
+    color: wheat;
+    background: cadetblue;
+    font-weight: bold;
+}
+
+.link {
+    color: wheat;
+    text-decoration: none;
+}
+
+.timeline_section {
+    background: #f5f5f5;
+    height: auto;
+    padding: 20px;
+}
+
+.timeline_feeds {
+    width: 60%;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.sidebar_feeds {
+    width: 30%;
+    padding: 20px;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.product-header {
+    font-size: 2em;
+}
+
+.class4 {
+    font-size: 3em;
+}
+
+.card-total {
+    width: 23%;
+    padding: 3px;
+    display: inline-block;
+    margin: 2px;
+    background: cadetblue;
+    color: white;
+}
+
+.product-card {
+    display: inline-block;
+    width: 25%;
+    padding: 4px;
+    background: white;
+    text-align: center;
+}
+
+.error {
+    padding: 5px;
+    color: #ff8484;
+    margin-top: 5px;
+}
+
+.success {
+    padding: 5px;
+    color: #39ff43;
+    margin-top: 5px;
+}
+
+.login-box {
+    background: #eeeeee;
+    padding: 60px;
+}
