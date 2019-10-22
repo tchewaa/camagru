@@ -15,29 +15,36 @@ require "includes/header_index.php";
                             {
                                 $email_address = $_POST['email_address'];
                                 $password = $_POST['password'];
-                                //$hash = password_hash($password,PASSWORD_DEFAULT);
-
-                                $sql = "SELECT * FROM `users` WHERE email_address = '".$email_address."';";
-                                $res = $conn->query($sql);
-
-                                if (mysqli_num_rows($res) > 0) {
-                                    while($row = mysqli_fetch_assoc($res)) {
-                                            $hashed =  $row['password'];
-                                            if (password_verify($password, $hashed))
-                                            {
-                                                $_SESSION['user_id'] = $row["user_id"];
-                                                $_SESSION['username'] = $row["username"];
-                                                $_SESSION['fullname'] = $row["fullname"];
-                                                $_SESSION['profile_pic'] = $row["profile_pic_url"];
-                                                header("Location: timeline.php");
-                                            }
-                                            else{
-                                                 echo "<span class='error'>Invalid Credentials.</span>";
-                                            }
-                                    }
-                                } else {
-                                    echo "<span class='error'> Error: Failed to login you account.</span>";
+                                
+                                if (empty($email_address) || empty($password)){
+                                    echo "<span class='error'>Error: Empty fields not allowed.</span>";
                                 }
+                                else if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)){
+                                    echo "<span class='error'>Error: Invalid email address.</span>";
+                                } 
+                                else{
+                                        $sql = "SELECT * FROM `users` WHERE email_address = '".$email_address."';";
+                                        $res = $conn->query($sql);
+
+                                        if (mysqli_num_rows($res) > 0) {
+                                            while($row = mysqli_fetch_assoc($res)) {
+                                                    $hashed =  $row['password'];
+                                                    if (password_verify($password, $hashed))
+                                                    {
+                                                        $_SESSION['user_id'] = $row["user_id"];
+                                                        $_SESSION['username'] = $row["username"];
+                                                        $_SESSION['fullname'] = $row["fullname"];
+                                                        $_SESSION['profile_pic'] = $row["profile_pic_url"];
+                                                        header("Location: timeline.php");
+                                                    }
+                                                    else{
+                                                        echo "<span class='error'>Invalid Credentials.</span>";
+                                                    }
+                                            }
+                                        } else {
+                                            echo "<span class='error'> Error: Failed to login you account.</span>";
+                                        }
+                                    }
                             }
                         ?>
                         <br/><br/>
