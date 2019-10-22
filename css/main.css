@@ -266,13 +266,13 @@ nav {
 
 .error {
     padding: 5px;
-    color: #ff8484;
+    color: #ff0000;
     margin-top: 5px;
 }
 
 .success {
     padding: 5px;
-    color: #39ff43;
+    color: #006e06;
     margin-top: 5px;
 }
 
@@ -333,4 +333,18 @@ nav {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.small_profile_no_icon {
+    display: inline-block;
+}
+
+.small_profile_no_icon img {
+    border-radius: 100px;
+    width: 50px;
+    height: 40px;
+}
+
+.timeline_profile_name {
+    display: inline-block;
 }
