@@ -17,31 +17,18 @@ if (isset($_POST['signup']))
         $error = "Error: Invalid email address.";
     } 
     else{
-
-        /*$sql_u = "SELECT * FROM users WHERE username='$username'";
-  	    $sql_e = "SELECT * FROM users WHERE email_address='$email_address'";
-  	    $res_u = $conn->query($sql_u);
-        $res_e = $conn->query($sql_e);
-
-        if (mysqli_num_rows($res_u) > 0) {
-            $error = "Error: Username already taken"; 	
-        }
-        else if (mysqli_num_rows($res_e) > 0){
-            $error = "Error: Email address already taken"; 	
-        }
-        else{*/
-
             $hashing = password_hash($password,PASSWORD_DEFAULT);
             $profile_pic_url = NULL;
             $privacy_level = 0;
-            $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`, `profile_pic_url`, `privacy_level`) 
-            VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$profile_pic_url."', '".$privacy_level."')";
+            $active = 0;
+            $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,'active',`profile_pic_url`, `privacy_level`) 
+            VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$profile_pic_url."', '".$privacy_level."')";
         
             if(!$conn->query($sql))
             {
                 $error = "Error: ".$conn->error;
             }else{
-                $success = "Success: Registered Successfully!!!";
+                $success = "Registered Successfully!!!";
                 
             }
         //}
