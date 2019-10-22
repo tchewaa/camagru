@@ -17,22 +17,26 @@ require "includes/header_index.php";
                                 $password = $_POST['password'];
                                 //$hash = password_hash($password,PASSWORD_DEFAULT);
 
-                                $sql = "SELECT * FROM `users` WHERE email_address = '".$email_address."' AND password = '".$password."';";
+                                $sql = "SELECT * FROM `users` WHERE email_address = '".$email_address."';";
                                 $res = $conn->query($sql);
 
                                 if (mysqli_num_rows($res) > 0) {
                                     while($row = mysqli_fetch_assoc($res)) {
-                                        //if(password_verify($password, $row["password"]))
-                                        //{
-                                            $_SESSION['user_id'] = $row["user_id"];
-                                            $_SESSION['username'] = $row["username"];
-                                            header("Location: timeline.php");
-                                       // }else{
-                                         //   echo "Invalid Credentials";
-                                        //}
+                                            $hashed =  $row['password'];
+                                            if (password_verify($password, $hashed))
+                                            {
+                                                $_SESSION['user_id'] = $row["user_id"];
+                                                $_SESSION['username'] = $row["username"];
+                                                $_SESSION['fullname'] = $row["fullname"];
+                                                $_SESSION['profile_pic'] = $row["profile_pic_url"];
+                                                header("Location: timeline.php");
+                                            }
+                                            else{
+                                                 echo "<span class='error'>Invalid Credentials.</span>";
+                                            }
                                     }
                                 } else {
-                                    echo "0 results";
+                                    echo "<span class='error'> Error: Failed to login you account.</span>";
                                 }
                             }
                         ?>
