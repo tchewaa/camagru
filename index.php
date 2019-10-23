@@ -23,28 +23,35 @@ require "includes/header_index.php";
                                     echo "<span class='error'>Error: Invalid email address.</span>";
                                 } 
                                 else{
-                                        $sql = "SELECT * FROM `users` WHERE email_address = '".$email_address."';";
-                                        $res = $conn->query($sql);
+                                       
+                                        $stmt = $conn->prepare("SELECT `user_id`,`username`,`password`,`fullname`,`profile_pic_url` FROM `users` WHERE email_address = :email_address;"); 
 
-                                        if (mysqli_num_rows($res) > 0) {
-                                            while($row = mysqli_fetch_assoc($res)) {
-                                                    $hashed =  $row['password'];
-                                                    if (password_verify($password, $hashed))
-                                                    {
-                                                        $_SESSION['user_id'] = $row["user_id"];
-                                                        $_SESSION['username'] = $row["username"];
-                                                        $_SESSION['fullname'] = $row["fullname"];
-                                                        $_SESSION['profile_pic'] = $row["profile_pic_url"];
-                                                        header("Location: timeline.php");
-                                                    }
-                                                    else{
-                                                        echo "<span class='error'>Invalid Credentials.</span>";
-                                                    }
+                                        $stmt->bindValue(':email_address', $email_address);                                     
+                                        $stmt->execute();
+
+                                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        if ($user === false)
+                                        {
+                                            echo "<span class='error'>Incorrect email address / password combination.</span>";
+                                        }else{
+                                            $hashed = $user['password'];
+                                            
+                                            $checkPassword = password_verify($password, $hashed);
+                                           
+                                            if($checkPassword)
+                                            {
+                                                $_SESSION['user_id'] = $user["user_id"];
+                                                $_SESSION['username'] = $user["username"];
+                                                $_SESSION['fullname'] = $user["fullname"];
+                                                $_SESSION['profile_pic'] = $user["profile_pic_url"];
+                                                header("Location: timeline.php");
+                                                exit;
+                                            }else{
+                                                echo "<span class='error'>Incorrect email address / password combination.</span>";
                                             }
-                                        } else {
-                                            echo "<span class='error'> Error: Failed to login you account.</span>";
                                         }
-                                    }
+                                }
                             }
                         ?>
                         <br/><br/>

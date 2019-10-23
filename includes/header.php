@@ -3,7 +3,7 @@ include_once 'config/config.php';
 session_start();
 if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic']))
 {
-    header("Location: new_account.php");
+    header("Location: index.php");
 }
 ?>
 <!DOCTYPE html>
