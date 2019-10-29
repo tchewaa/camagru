@@ -1,5 +1,5 @@
 <?php
-include_once 'config/config.php';
+require("config/setup.php");
 session_start();
 if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic']))
 {
@@ -14,7 +14,7 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SES
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <script src="./js/functions.js"></script>  
-    <title>Camagru | Social</title>
+    <title>Camagru</title>
 </head>
 <body>
     <header>
@@ -29,8 +29,7 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SES
                         <ul>
                             <li><a class="link" href="#"><i class="fa fa-indent" aria-hidden="true"></i> Explore</a></li>
                             <li><a class="link" id ="myBtn"><i class="fa fa-list-alt" aria-hidden="true"></i>  Activity</a></li>
-                            <li><a class="link" href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                            <li><a class="link" href="#"><?php if(isset($_SESSION['username'])){echo $_SESSION["username"];}?></a></li>
+                            <li><a class="link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                             <li><a class="link" href="logout.php">Sign Out</a></li>
                         </ul>
                     </div>

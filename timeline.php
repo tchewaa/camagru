@@ -1,6 +1,6 @@
 
 <?php
-    require "includes/header.php";
+    require("includes/header.php");
 ?>
 <main>
         <section class="timeline_section">
@@ -15,10 +15,12 @@
                     <div class="sidebar_feeds">
                        <div class="small_profile_no_icon">
                        <?php
-                        if(isset($_SESSION['profile_pic']))
-                                 echo $_SESSION["profile_pic"];
-                        else
-                                echo '<img src="images/no-profile-pic-icon-5.jpg" />';
+                        if(isset($_SESSION['profile_pic'])){
+                                echo $_SESSION["profile_pic"];
+                        }
+                        else{
+                                echo '<img src="images/no-profile-pic-icon-5.jpg"/>';
+                        }
                         ?>
                        </div>
                        <div class="timeline_profile_name">

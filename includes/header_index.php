@@ -1,5 +1,5 @@
 <?php
-include_once 'config/config.php';
+require("./config/setup.php");
 session_start();
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css" />
-    <title>Camagru | Social</title>
+    <title>Camagru</title>
 </head>
 <body>
     <header>
