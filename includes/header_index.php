@@ -1,5 +1,6 @@
 <?php
-require("./config/setup.php");
+require("./db_connection.php");
+
 session_start();
 ?>
 <!DOCTYPE html>

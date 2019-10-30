@@ -1,5 +1,5 @@
 <?php
-require("config/setup.php");
+require("./db_connection.php");
 session_start();
 if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic']))
 {

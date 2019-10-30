@@ -1,6 +1,18 @@
 
 <?php
-    require "includes/header_index.php";
+    require("includes/header_index.php");
+    if(isset($_POST['reset-submit']))
+    {
+        $username_email = $_POST['user_email'];
+
+        if (empty($username_email))
+        {
+            $error = "Field must not be empty";
+        }
+        else if (!filter_var($username_email, FILTER_VALIDATE_EMAIL)){
+            $error = "Invalid email address.";
+        } 
+    }
 ?>
 <main>
 
@@ -12,9 +24,11 @@
                         <br/>
                         <p>Enter your username or email and we'll send you a link to get back into your account.</p>
                         <br/>
-                        <form method="POST" action="login.php">
-                            <input type="text" name="username_email" placeholder="Username / Email Address"><br><br/>
-                            <button class ="primary-button" type="submit" name="signup-submit">Reset Password</button><br/><br/>
+                        <p><span class="error"><?php if (isset($error)) echo $error ?></span>
+                        <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
+                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <input type="text" name="user_email" placeholder="Email Address"><br><br/>
+                            <button class ="primary-button" type="submit" name="reset-submit">Reset Password</button><br/><br/>
                             <a href="index.php">Sign In</a>
                             <br/><br/>Have an account? <a href="new_account.php">Sign Up</a>
                         </form>
