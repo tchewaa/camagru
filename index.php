@@ -15,18 +15,25 @@ require("includes/header_index.php");
                             {
                                 $email_address = $_POST['email_address'];
                                 $password = $_POST['password'];
+                                $uppercase = preg_match('@[A-Z]@', $password);
+                                $lowercase = preg_match('@[a-z]@', $password);
+                                $number    = preg_match('@[0-9]@', $password);
+                                $specialChars = preg_match('@[^\w]@', $password);
+                                $error = "";
+                                $success = "";
+                            
                                 
                                 
                                 if (empty($email_address) || empty($password)){
-                                    echo "<span class='error'>Error: Empty fields not allowed.</span>";
+                                    $error = "Error: Empty fields not allowed.";
                                 }
                                 else if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)){
-                                    echo "<span class='error'>Error: Invalid email address.</span>";
+                                    $error = "Error: Invalid email address.";
                                 } 
-                                /*else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
+                                else if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
                                 {
-                                    $error = "Password should be at least 8 characters in length <br/> and should include at least one upper case letter, <br/> one number, and one special character.";
-                                }*/
+                                    $error = "Error: Password should be at least 8 characters in length <br/> and should include at least one upper case letter, <br/> one number, and one special character.";
+                                }
                                 else{
                                        
                                         $active = '1';
@@ -42,7 +49,7 @@ require("includes/header_index.php");
 
                                         if ($user === false)
                                         {
-                                            echo "<span class='error'>Incorrect credentials / Account not active.</span>";
+                                            $error = "Error: Incorrect credentials / Account not active.";
                                         }else{
                                             $hashed = $user['password'];
                                             
@@ -57,15 +64,16 @@ require("includes/header_index.php");
                                                 header("Location: timeline.php");
                                                 exit;
                                             }else{
-                                                echo "<span class='error'>Incorrect email address / password combination.</span>";
+                                                $error = "Error: Incorrect email address / password combination.";
                                             }
                                         }
                                 }
                             }
                         ?>
-                        <br/><br/>
+                        <p><span class="error"><?php if (isset($error)) echo $error ?></span>
+                        <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                            <input type="text" name="email_address" placeholder="Email Address"><br><br/>
+                            <input type="text" value = "<?php if (isset($_POST['email_address'])) echo $_POST['email_address'];?>" name="email_address" placeholder="Email Address"><br><br/>
                             <input type="password" name="password" placeholder="Password"><br/><br/>
                             <button class ="primary-button" type="submit" name="sign_in">Sign In</button><br/><br/>
                             <a href="forgot_password.php">Forgot Password?</a>
