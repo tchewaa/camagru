@@ -1,5 +1,5 @@
 <?php
-require "includes/header_index.php";
+require("includes/header_index.php");
 ?>
 
 <main>
@@ -15,24 +15,51 @@ require "includes/header_index.php";
                             {
                                 $email_address = $_POST['email_address'];
                                 $password = $_POST['password'];
-                                //$hash = password_hash($password,PASSWORD_DEFAULT);
+                                
+                                
+                                if (empty($email_address) || empty($password)){
+                                    echo "<span class='error'>Error: Empty fields not allowed.</span>";
+                                }
+                                else if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)){
+                                    echo "<span class='error'>Error: Invalid email address.</span>";
+                                } 
+                                /*else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
+                                {
+                                    $error = "Password should be at least 8 characters in length <br/> and should include at least one upper case letter, <br/> one number, and one special character.";
+                                }*/
+                                else{
+                                       
+                                        $active = '1';
+                                        $stmt = $conn->prepare("SELECT `user_id`,`username`,`password`,`fullname`,`profile_pic_url` 
+                                        FROM `users` WHERE email_address = :email_address AND active = :active;"); 
 
-                                $sql = "SELECT * FROM `users` WHERE email_address = '".$email_address."' AND password = '".$password."';";
-                                $res = $conn->query($sql);
+                                        $stmt->bindValue(':email_address', $email_address);
+                                        $stmt->bindValue(':active', $active);
 
-                                if (mysqli_num_rows($res) > 0) {
-                                    while($row = mysqli_fetch_assoc($res)) {
-                                        //if(password_verify($password, $row["password"]))
-                                        //{
-                                            $_SESSION['user_id'] = $row["user_id"];
-                                            $_SESSION['username'] = $row["username"];
-                                            header("Location: timeline.php");
-                                       // }else{
-                                         //   echo "Invalid Credentials";
-                                        //}
-                                    }
-                                } else {
-                                    echo "0 results";
+                                        $stmt->execute();
+
+                                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        if ($user === false)
+                                        {
+                                            echo "<span class='error'>Incorrect credentials / Account not active.</span>";
+                                        }else{
+                                            $hashed = $user['password'];
+                                            
+                                            $checkPassword = password_verify($password, $hashed);
+                                           
+                                            if($checkPassword)
+                                            {
+                                                $_SESSION['user_id'] = $user["user_id"];
+                                                $_SESSION['username'] = $user["username"];
+                                                $_SESSION['fullname'] = $user["fullname"];
+                                                $_SESSION['profile_pic'] = $user["profile_pic_url"];
+                                                header("Location: timeline.php");
+                                                exit;
+                                            }else{
+                                                echo "<span class='error'>Incorrect email address / password combination.</span>";
+                                            }
+                                        }
                                 }
                             }
                         ?>

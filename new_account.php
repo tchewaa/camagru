@@ -1,50 +1,51 @@
 <?php
-require "includes/header_index.php";
+require("includes/header_index.php");
 
 if (isset($_POST['signup']))
 {
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     $email_address = $_POST['email_address'];
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number    = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
     $error = "";
     $success = "";
+    $verify = rand();
 
     if (empty($fullname) || empty($username) || empty($password) || empty($email_address)){
-        $error = "Error: Fill all the fields.";
+        $error = "Fill all the fields.";
     }
     else if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)){
-        $error = "Error: Invalid email address.";
+        $error = "Invalid email address.";
     } 
+    else if ($password !== $confirm_password){
+        $error = "Password is not the same.";
+    } 
+    else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
+    {
+        $error = "Password should be at least 8 characters in length <br/> and should include at least one upper case letter, <br/> one number, and one special character.";
+    }
     else{
-
-        /*$sql_u = "SELECT * FROM users WHERE username='$username'";
-  	    $sql_e = "SELECT * FROM users WHERE email_address='$email_address'";
-  	    $res_u = $conn->query($sql_u);
-        $res_e = $conn->query($sql_e);
-
-        if (mysqli_num_rows($res_u) > 0) {
-            $error = "Error: Username already taken"; 	
-        }
-        else if (mysqli_num_rows($res_e) > 0){
-            $error = "Error: Email address already taken"; 	
-        }
-        else{*/
-
             $hashing = password_hash($password,PASSWORD_DEFAULT);
             $profile_pic_url = NULL;
             $privacy_level = 0;
-            $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`, `profile_pic_url`, `privacy_level`) 
-            VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$profile_pic_url."', '".$privacy_level."')";
-        
-            if(!$conn->query($sql))
+            $active = 0;
+            try{
+                $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`verify_key`,`profile_pic_url`, `privacy_level`) 
+                VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$verify."','".$profile_pic_url."', '".$privacy_level."')";
+                $conn->exec($sql);
+                $message = "Account Confirm 
+                        http://localhost/camagru/verify.php?email_address=".$email_address."&key=".$verify."";
+                mail($email_address,"Camagru Account Email Verification", $message,"FROM Camagru");   
+                header("Location: index.php");
+            }catch(PDOException $e)
             {
-                $error = "Error: ".$conn->error;
-            }else{
-                $success = "Success: Registered Successfully!!!";
-                
+                $error = "Error: ".$e->getMessage();
             }
-        //}
    }
 }
 ?>
@@ -60,9 +61,10 @@ if (isset($_POST['signup']))
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                 <input type="text" value = "<?php if(isset($_POST['fullname'])){echo $_POST['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
                                 <input type="text" value = "<?php if(isset($_POST['username'])){echo $_POST['username'];}?>" name="username" placeholder="Username"><br/><br/>
-                                <input type="password" value = "<?php if(isset($_POST['password'])){echo $_POST['password'];}?>" name="password" placeholder="Password"><br/><br/>
                                 <input type="text" value = "<?php if(isset($_POST['email_address'])){echo $_POST['email_address'];}?>" name="email_address" placeholder="Email Address"><br/><br/>
-                                <button class ="primary-button" type="submit" name="signup">Sign Up</button><br/><br/>
+                                <input type="password" name="password" placeholder="Password"><br/><br/>
+                                <input type="password" name="confirm_password" placeholder="Confirm Password"><br/><br/>
+                                 <button class ="primary-button" type="submit" name="signup">Sign Up</button><br/><br/>
                                 <a href="forgot_password.php">Forgot Password?</a>
                                 <br/><br/>Have an account? <a href="index.php">Sign In</a>
                             </form>

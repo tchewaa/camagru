@@ -1,10 +1,10 @@
 <?php
-include_once 'config/config.php';
+require("config/setup.php");
 session_start();
-/*if(!isset($_SESSION['user_id']))
+if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic']))
 {
-    header("Location: timeline.php");
-}*/
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,9 @@ session_start();
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css" />
-    <title>Camagru | Social</title>
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <script src="./js/functions.js"></script>  
+    <title>Camagru</title>
 </head>
 <body>
     <header>
@@ -25,10 +27,9 @@ session_start();
                             <p></p>
                         </div>
                         <ul>
-                            <li><a class="link" href="#">Explore</a></li>
-                            <li><a class="link" href="#">Activity</a></li>
-                            <li><a class="link" href="#">Profile</a></li>
-                            <li><a class="link" href="#"><?php if(isset($_SESSION['username'])){echo $_SESSION["username"];}?></li>
+                            <li><a class="link" href="#"><i class="fa fa-indent" aria-hidden="true"></i> Explore</a></li>
+                            <li><a class="link" id ="myBtn"><i class="fa fa-list-alt" aria-hidden="true"></i>  Activity</a></li>
+                            <li><a class="link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                             <li><a class="link" href="logout.php">Sign Out</a></li>
                         </ul>
                     </div>
