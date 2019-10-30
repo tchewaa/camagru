@@ -1,14 +1,14 @@
 <?php
-    if (isset($_GET['key']) && isset($_GET['email_address']))
+    if (isset($_GET['token']) && isset($_GET['email_address']))
     {
         require("includes/header_index.php");
         $email_address = $_GET['email_address'];
-        $verify_key = $_GET['key'];
+        $token = $_GET['token'];
         try{
 
-            $stmt = $conn->prepare("SELECT `email_address`,`active`,`verify_key` FROM `users` WHERE email_address = :email_address AND verify_key = :verify_key"); 
+            $stmt = $conn->prepare("SELECT `email_address`,`active`,`token` FROM `users` WHERE email_address = :email_address AND token = :token"); 
             $stmt->bindValue(':email_address', $email_address);
-            $stmt->bindValue(':verify_key', $verify_key);
+            $stmt->bindValue(':token', $token);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($user === false)
@@ -17,11 +17,11 @@
             }
             else{
                 $email = $user['email_address'];
-                $key = $user['verify_key'];
+                $key = $user['token'];
 
-                $stmt_1 = $conn->prepare("UPDATE `users` SET `active` = '1' WHERE email_address = :email_address AND verify_key = :verify_key");
+                $stmt_1 = $conn->prepare("UPDATE `users` SET `active` = '1' WHERE email_address = :email_address AND token = :token");
                 $stmt_1->bindParam(':email_address', $email);
-                $stmt_1->bindParam(':verify_key', $key);
+                $stmt_1->bindParam(':token', $token);
                 $stmt_1->execute();
                 echo "<script language='javascript'>alert('Your email address has been verified');</script>"; 
                 header("refresh:0.5; url=index.php");                
