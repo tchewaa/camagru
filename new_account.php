@@ -37,19 +37,18 @@ if (isset($_POST['signup']))
             $privacy_level = 0;
             $active = 0;
             try{
-                $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`) 
-                VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."')";
+                $sql = "INSERT INTO `users` (`username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`) VALUES ('".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."')";
                 $conn->exec($sql);
-                $message = "
+                /*$message = "
                         Hi $username, <br/><br/>
                         Thank you for registering on Camagru, to access Camagru, please click on the link below and verify your email address.<br/><br/>
-                        <a href='http://localhost/camagru/verify.php?email_address='.$email_address.'&token='.$token.'>
-                        http://localhost/camagru/verify.php?email_address='.$email_address.'&token='.$token.
+                        <a href='http://127.0.0.1:8080/camagru/verify.php?email_address='.$email_address.'&token='.$token.'>
+                        http://127.0.0.1:8080/camagru/verify.php?email_address='.$email_address.'&token='.$token.
                         </a><br/><br/>
                         Kind Regards<br/><br/><br/>
                         Camagru Team!<br/>
                         ";
-                $mail = mail($email_address,"Camagru Email Verification", $message,"FROM Camagru"); 
+                $mail = mail($email_address,"Camagru Email Verification", $message,"FROM Camagru"); */
                 //if (!$mail)
                 //{
                 //    $error = "Error: Could not send an email address";
@@ -57,7 +56,6 @@ if (isset($_POST['signup']))
                     echo "<script language='javascript'>alert('Your account has been registered successfully');</script>"; 
                     header("refresh:0.5; url=index.php");
                // }
-                
             }catch(PDOException $e)
             {
                 $error = "Error: ".$e->getMessage();
