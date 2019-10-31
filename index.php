@@ -37,9 +37,7 @@ require("includes/header_index.php");
                                 else{
                                        
                                         $active = '1';
-                                        $stmt = $conn->prepare("SELECT `user_id`,`username`,`password`,`fullname`,`profile_pic_url` 
-                                        FROM `users` WHERE email_address = :email_address AND active = :active;"); 
-
+                                        $stmt = $conn->prepare("SELECT `user_id`,`username` ,`email_address`,`password`,`fullname`,`website`,`bio`,`phone`,`gender`,`profile_pic_url` FROM `users` WHERE email_address = :email_address AND active = :active;"); 
                                         $stmt->bindValue(':email_address', $email_address);
                                         $stmt->bindValue(':active', $active);
 
@@ -59,8 +57,14 @@ require("includes/header_index.php");
                                             {
                                                 $_SESSION['user_id'] = $user["user_id"];
                                                 $_SESSION['username'] = $user["username"];
+                                                $_SESSION['email_address'] = $user["email_address"];
                                                 $_SESSION['fullname'] = $user["fullname"];
+                                                $_SESSION['website'] = $user["website"];
+                                                $_SESSION['bio'] = $user["bio"];
+                                                $_SESSION['phone'] = $user["phone"];
+                                                $_SESSION['gender'] = $user["gender"];
                                                 $_SESSION['profile_pic'] = $user["profile_pic_url"];
+                                                
                                                 header("Location: timeline.php");
                                                 exit;
                                             }else{

@@ -369,15 +369,15 @@ nav {
 }
 
 .display_username {
-    display: inline-block;
-    width: 20%;
+    text-align: center;
     padding: 20px;
 }
 
 .profile_edit_button {
     display: inline-block;
-    width: 20%;
+    width: 100%;
     padding: 20px;
+    text-align: center;
 }
 
 .settings_icon {
@@ -431,5 +431,6 @@ nav {
 
 .profile_bio {
     padding: 20px;
-    width: 100px;
+    width: auto;
+    text-align: left;
 }
