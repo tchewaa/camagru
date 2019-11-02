@@ -1,12 +1,6 @@
 body {
     background: #f5f5f5;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 16px;
-}
-
-body p {
-    
-    font-size: 16px;
 }
 
 .container {
@@ -37,13 +31,13 @@ header h1 {
 }
 
 nav {
-    background: cadetblue;
+    background: firebrick;
 }
 
 .sign-in {
     padding: 4px !important;
     background: wheat !important;
-    color: cadetblue !important;
+    color: firebrick !important;
 }
 
 .menu ul {
@@ -79,7 +73,7 @@ nav {
     line-height: 50px;
     font-weight: bold;
     height: 50px;
-    background: cadetblue;
+    background: firebrick;
 }
 
 .menu ul li a:hover {
@@ -130,12 +124,12 @@ nav {
     font-weight: bold;
     top: 300px;
     position: absolute;
-    background: cadetblue;
+    background: firebrick;
     padding: 10px;
 }
 
 .intro {
-    background: cadetblue;
+    background: firebrick;
     height: 450px;
     text-align: center;
 }
@@ -162,7 +156,7 @@ nav {
     text-align: center;
     font-size: 25px;
     padding-top: 25px;
-    color: cadetblue;
+    color: firebrick;
     margin-bottom: 10px;
 }
 
@@ -178,7 +172,7 @@ nav {
     text-align: center;
     font-size: 25px;
     padding-top: 25px;
-    color: cadetblue;
+    color: firebrick;
     margin-bottom: 10px;
 }
 
@@ -188,7 +182,7 @@ nav {
 }
 
 .primary-button {
-    background: cadetblue;
+    background: firebrick;
     color: wheat;
     font-size: 14px;
     padding: 5px;
@@ -214,7 +208,7 @@ nav {
 .card-info {
     padding: 5px;
     color: wheat;
-    background: cadetblue;
+    background: firebrick;
     font-weight: bold;
 }
 
@@ -234,10 +228,14 @@ nav {
     display: inline-block;
     text-align: center;
     padding: 2px;
+    box-shadow: #afafaf 2px 2px;
+    background: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .sidebar_feeds {
+    box-shadow: #afafaf 2px 2px;
+    background: white;
     width: 30%;
     padding: 20px;
     display: inline-block;
@@ -258,7 +256,7 @@ nav {
     padding: 3px;
     display: inline-block;
     margin: 2px;
-    background: cadetblue;
+    background: firebrick;
     color: white;
 }
 
@@ -286,45 +284,6 @@ nav {
     background: #f5f5f5;
     padding: 60px;
 }
-
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
 
 .small_profile_no_icon {
     display: inline-block;
@@ -424,4 +383,33 @@ nav {
     padding: 20px;
     width: auto;
     text-align: left;
+}
+
+textarea {
+    width: 80%;
+    padding: 20px;
+    text-align: left;
+    overflow-y: scroll;
+    height: 100px;
+    resize: none;
+}
+
+.profile_container {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    box-shadow: #afafaf 2px 2px;
+    background: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.profile_container h4 {
+    margin: 10px;
+    border-right: firebrick 4px solid;
+    padding-right: 10px;
+}
+
+.right {
+    text-align: right;
 }
