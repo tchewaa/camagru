@@ -37,7 +37,7 @@ require("includes/header_index.php");
                                 else{
                                        
                                         $active = '1';
-                                        $stmt = $conn->prepare("SELECT `user_id`,`username` ,`email_address`,`password`,`fullname`,`website`,`bio`,`phone`,`gender`,`profile_pic_url` FROM `users` WHERE email_address = :email_address AND active = :active;"); 
+                                        $stmt = $conn->prepare("SELECT `user_id`,`username`,`password`,`email_address`,`password`,`fullname`,`website`,`bio`,`phone`,`gender`,`profile_pic_url` FROM `users` WHERE email_address = :email_address AND active = :active;"); 
                                         $stmt->bindValue(':email_address', $email_address);
                                         $stmt->bindValue(':active', $active);
 
@@ -57,6 +57,7 @@ require("includes/header_index.php");
                                             {
                                                 $_SESSION['user_id'] = $user["user_id"];
                                                 $_SESSION['username'] = $user["username"];
+                                                $_SESSION['password'] = $user["password"];
                                                 $_SESSION['email_address'] = $user["email_address"];
                                                 $_SESSION['fullname'] = $user["fullname"];
                                                 $_SESSION['website'] = $user["website"];
