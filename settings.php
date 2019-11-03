@@ -8,12 +8,17 @@
                 <div class="row">
                     <div class="profile_container">
                         <h4 class="right">Settings</h4>
-
-                        <div class="profile_edit_button">
-                            <a onclick="mySecurity()" class="btn profile_buttons outline" type="button" href='#'><i class="fa fa-lock" aria-hidden="true"></i> Security</a>
-                            <a onclick="myNotification()"class="btn profile_buttons outline" type="button" href='#'><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a>
-                        </div>
-
+                        <h3>Change Password</h3>
+                            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                                <br/>
+                                 <p><span class="error"><?php if (isset($error)) echo $error ?></span>
+                                <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
+                                Old Password<br/><input type="text" name="oldPassword" placeholder="Old Password"><br/><br/>
+                                New Password<br/><input type="text" name="newPassword" placeholder="New Password"><br/><br/>
+                                Confirm Password<br/><input type="text" name="confirmPassword" placeholder="Confirm Password"><br/><br/>
+                                <button class ="primary-button" type="submit" name="changePassword">Change Password</button><br/><br/>
+                            </form>
+                        
                     </div>
                     
                 </div>
