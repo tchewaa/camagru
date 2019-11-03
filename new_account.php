@@ -37,7 +37,8 @@ if (isset($_POST['signup']))
             $privacy_level = 0;
             $active = 0;
             try{
-                $sql = "INSERT INTO `users` (`username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`) VALUES ('".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."')";
+                $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`) 
+                VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."')";
                 $conn->exec($sql);
                 /*$message = "
                         Hi $username, <br/><br/>
