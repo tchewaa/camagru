@@ -6,6 +6,7 @@
         $fullname = $_POST['fullname'];
         $username = $_POST['username'];
         $email_address = $_POST['email_address'];
+        $receive_email = $_POST['receive_email'];
 
         if (empty($fullname) || empty($username) || empty($email_address))
         {
@@ -17,7 +18,7 @@
         else {
             
             try{
-                $sql = "UPDATE `users` SET `fullname` = '".$fullname."', `username` = '".$username."', `email_address` = '".$email_address."' WHERE `user_id` = '".$_SESSION["user_id"]."'";
+                $sql = "UPDATE `users` SET `fullname` = '".$fullname."', `username` = '".$username."', `email_address` = '".$email_address."' , `receive_email` = '".$receive_email."' WHERE `user_id` = '".$_SESSION["user_id"]."'";
                 $conn->exec($sql);
                 $success = "Updated Successfully.";
             }
@@ -41,19 +42,9 @@
                                 Username<br/><input readonly type="text" value = "<?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}?>" name="username" placeholder="Username"><br/><br/>
                                 Email Address<br/><input type="text" value = "<?php if(isset($_SESSION['email_address'])){echo $_SESSION['email_address'];}?>" name="email_address" placeholder="Username"><br/><br/>
                                 Receive Email Notification ?<br/>
-                                <select name="receive_mail">
-                                    <option value="">Make Your Choice</option>
-                                    <?php
-                                        //$sql = "SELECT * FROM `categories`";
-                                        $res = $conn->query($sql);
-                                        while ($rows = mysqli_fetch_assoc($res)){ 
-                                        ?>
-                                        <option value="<?php echo $rows['category_id'];?>"><?php echo $rows['category_name'];?></option>
-
-                                        <?php
-                                        } 
-                                        ?>
-                                    </select> <br/><br/>
+                                Yes <input type="radio" name="receive_email" value="Yes"<? if ($_SESSION['receive_email'] == "Yes") echo " checked"; ?>> <br/>
+                                No <input type="radio" name="receive_email" value="No"<? if ($_SESSION['receive_email'] == "No") echo " checked"; ?>><br/>
+                                Currently Set to: <b><? echo $_SESSION['receive_email'];?> <br/><br/>
                                 <button class ="primary-button" type="submit" name="save">Save</button><br/><br/>
                                
                             </form>
