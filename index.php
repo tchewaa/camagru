@@ -21,40 +21,29 @@ require("includes/header_index.php");
                                 $specialChars = preg_match('@[^\w]@', $password);
                                 $error = "";
                                 $success = "";
-                            
-                                
-                                
+    
                                 if (empty($email_address) || empty($password)){
                                     $error = "Error: Empty fields not allowed.";
                                 }
                                 else if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)){
                                     $error = "Error: Invalid email address.";
                                 } 
-                                else if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
-                                {
-                                    $error = "Error: Password should be at least 8 characters in length <br/> and should include at least one upper case letter, <br/> one number, and one special character.";
+                                else if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8){
+                                    $error = "Error:<ul class='error' style='margin-left:25px'><li>Password should be at least 8 characters in length.</ll> <li>Password should include at least one upper case letter.</li> <li> Password should have one number, and one special character.</li></ul>";
                                 }
                                 else{
-                                       
                                         $active = '1';
-                                        $stmt = $conn->prepare("SELECT `user_id`,`username`,`password`,`email_address`,`password`,`fullname`,`profile_pic_url` FROM `users` WHERE email_address = :email_address AND active = :active;"); 
+                                        $stmt = $conn->prepare("SELECT `user_id`,`username`,`password`,`email_address`,`fullname`,`profile_pic_url`,`receive_email` FROM `users` WHERE email_address = :email_address AND active = :active;"); 
                                         $stmt->bindValue(':email_address', $email_address);
                                         $stmt->bindValue(':active', $active);
-
                                         $stmt->execute();
-
                                         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                                        if ($user === false)
-                                        {
-                                            $error = "Error: Incorrect credentials / Account not active.";
+                                        if ($user === false){                                            
+                                            $error = "Error: Incorrect Credentials / Your Account Is Not Active.";
                                         }else{
                                             $hashed = $user['password'];
-                                            
                                             $checkPassword = password_verify($password, $hashed);
-                                           
-                                            if($checkPassword)
-                                            {
+                                            if($checkPassword)                                            {
                                                 $_SESSION['user_id'] = $user["user_id"];
                                                 $_SESSION['username'] = $user["username"];
                                                 $_SESSION['password'] = $user["password"];
@@ -63,7 +52,6 @@ require("includes/header_index.php");
                                                 $_SESSION['profile_pic'] = $user["profile_pic_url"];
                                                 $_SESSION['privacy_level'] = $user["privacy_level"];
                                                 $_SESSION['receive_email'] = $user["receive_email"];
-                                                
                                                 header("Location: timeline.php");
                                                 exit;
                                             }else{
