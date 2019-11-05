@@ -43,7 +43,8 @@
             $stm->bindValue(':pass', $hashing );
             if($stm->execute())
             {
-                header("refresh:2; url=index.php");
+                echo "<script language='javascript'>alert('Your password has been reset');</script>"; 
+                header("refresh:0.5;url=index.php");
             }else{
                 $error = "Error: Something went wrong, try again later";
             }
