@@ -16,7 +16,7 @@
                        <div class="small_profile_no_icon">
                        <?php
                         if(isset($_SESSION['profile_pic'])){
-                                echo $_SESSION["profile_pic"];
+                                echo "<img src=images/".$_SESSION['profile_pic']."/>";
                         }
                         else{
                                 echo '<img src="images/no-profile-pic-icon-5.jpg"/>';
