@@ -45,7 +45,6 @@ nav {
 }
 
 .logo {
-    display: inline-block;
     float: left;
     line-height: 60px;
     color: wheat;
@@ -412,4 +411,84 @@ textarea {
 
 .right {
     text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.securityDIV {
+    width: 40%;
+    display: inline-block;
+    padding: 20px;
+    text-align: left;
+}
+
+.notifyDIV {
+    width: 40%;
+    display: inline-block;
+    padding: 20px;
+    text-align: left;
+}
+
+
+/*.timeline_feeds img {
+    height: 300px;
+    width: 300px;
+    padding: 12px;
+}*/
+
+.timeline_feeds h4 {
+    margin: 10px;
+    border-right: firebrick 4px solid;
+    padding-right: 10px;
+}
+
+
+/*Image overlay for comments and likes*/
+
+.image-container {
+    position: relative;
+    width: 300px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: firebrick;
+    overflow: hidden;
+    width: 40%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.image-container:hover .overlay {
+    height: 100%;
+    width: 100%;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
