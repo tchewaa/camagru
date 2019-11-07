@@ -1,5 +1,5 @@
 <?php
-require("config/setup.php");
+require("./db_connection.php");
 session_start();
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,8 @@ session_start();
                 <div class="row">
                     <div class="menu">
                         <div class="logo">
-                            <p><a class="link" href="#"></a></p>
+                                <p><span class="icon">C</span><a class="link" href="timeline.php">Camagru</a></p>
+                                <p></p>
                         </div>
                         <ul>
                             <li><a class="link" href="#"></a></li>

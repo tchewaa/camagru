@@ -13,7 +13,7 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($user === false)
             {
-                echo "Error";
+                echo "Error : Could not verify your credentials";
             }
             else{
                 $email = $user['email_address'];
@@ -23,6 +23,11 @@
                 $stmt_1->bindParam(':email_address', $email);
                 $stmt_1->bindParam(':token', $token);
                 $stmt_1->execute();
+
+                $stmt_2 = $conn->prepare("UPDATE `users` SET `token` = NULL WHERE email_address = :email_address");
+                $stmt_2->bindParam(':email_address', $email);
+                $stmt_2->execute();
+
                 echo "<script language='javascript'>alert('Your email address has been verified');</script>"; 
                 header("refresh:0.5; url=index.php");                
             }
@@ -30,5 +35,9 @@
         catch(PDOException $e){
             echo  $e->getMessage();
         }
+    }
+    else{
+        echo "<script language='javascript'>alert('Could not verify your account.  Contact Camagru Team!');</script>"; 
+        header("refresh:0.5; url=index.php");  
     }
 ?>
