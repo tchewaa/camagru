@@ -312,7 +312,7 @@ nav {
 
 .profile_info {
     display: inline-block;
-    width: 60%;
+    width: 70%;
     padding: 20px;
     text-align: center;
 }
@@ -381,7 +381,6 @@ nav {
 .profile_bio {
     padding: 20px;
     width: auto;
-    text-align: left;
 }
 
 textarea {
@@ -469,7 +468,10 @@ textarea {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: firebrick;
+    /*background-color: firebrick;*/
+    background: rgb(177, 13, 13);
+    /* Fallback color */
+    background: rgba(177, 17, 17, 0.7);
     overflow: hidden;
     width: 40%;
     height: 0;
@@ -483,7 +485,7 @@ textarea {
 
 .text {
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -491,4 +493,75 @@ textarea {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+.post-container {
+    width: auto;
+    display: inline-block;
+    padding: 10px;
+}
+
+.post-tools {
+    padding-top: 10px;
+    text-align: left;
+}
+
+.post-comment {
+    margin-top: 5px;
+    padding: 25px;
+    text-align: left;
+}
+
+.comments-container {
+    padding: 20px;
+    font-size: 14px;
+    text-align: left;
+    border: 1px solid #000;
+}
+
+.pagination {
+    margin: 2px;
+    display: inline-block;
+}
+
+.pagination ul {
+    list-style: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.pagination li {
+    list-style: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.pagination a {
+    background: firebrick;
+    color: wheat;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.top-container {
+    text-align: center;
+    width: 100%;
+}
+
+.video {
+    text-align: center;
+}
+
+.canvas {
+    display: inline-block;
+}
+
+.bottom-container {
+    display: inline-block;
+}
+
+#canvas {
+    display: none;
 }

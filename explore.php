@@ -1,33 +1,44 @@
 
 <?php
     require("includes/header.php");
+   
 ?>
 <main>
         <section class="timeline_section">
             <div class="container">
                 <div class="row">
-                    <div class="timeline_feeds" style="width:100% !important; text-align:left">
+                    <div class="timeline_feeds" style="width:100% !important; text-align:center">
                     <h4 class="right">Explore</h4>
 
                     <?php
                             try{
-                                $user_id = $_SESSION['user_id'];
-                                //$stmt = $conn->prepare("SELECT  *  FROM `image` WHERE `user_id` = 45");
-                                $stmt = $conn->prepare("SELECT u.user_id,  i.image_id, i.user_id, i.image_caption, i.image_name, i.image_time
-FROM users u, `image` i WHERE u.user_id = i.user_id AND u.user_id = $user_id AND i.user_id = $user_id ORDER BY i.image_time DESC LIMIT 1"); 
+                                $limit = 5;
+                                $sql = "SELECT * FROM `image`";
+                                $s = $conn->prepare($sql);
+                                $s->execute();
+                                $total_results = $s->rowCount();
+                                $total_pages = ceil($total_results/$limit);
+
+                                if (!isset($_GET['page'])) {
+                                    $page = 1;
+                                } else{
+                                    $page = $_GET['page'];
+                                }
+
+                                $starting_limit = ($page-1)*$limit;
+
+                                $stmt = $conn->prepare("SELECT i.image_id, i.user_id, i.image_caption, i.image_name, i.image_time FROM `image` i  ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
                                 $stmt->execute();
-                                //$data = $stmt->fetch(PDO::FETCH_ASSOC);
                                 if ($stmt === false){                                            
-                                    $error = "NO POSTS YET...ADD SOMETHING.";
+                                    $error = "Error: Something went";
                                 }else{ 
                                     foreach ($stmt as $row) {
-                                        echo "<div class='image-container'>";
+                                        echo "<a class='link' href='post.php?action=post&id=$row[image_id]'><div class='image-container'>";
                                         echo "<img src='".$row['image_name']."' width='250px' height='250px' alt='Posts' class='image'>";
-                                        //echo    <img src="img_avatar.png" alt="Avatar" class="image">;
                                         echo    "<div class='overlay'>";
-                                        echo        "<div class='text'>'".$row['image_caption']."'</div>";
+                                        echo        "<div class='text'>".$row['image_caption']."</div>";
                                         echo    "</div>";
-                                        echo "</div>";
+                                        echo "</div></a>";
                                         
                                     }
                                 }
@@ -36,6 +47,13 @@ FROM users u, `image` i WHERE u.user_id = i.user_id AND u.user_id = $user_id AND
                                     $error = "Error: ".$e->getMessage();
                             }
                        ?> 
+                       <?php
+                       echo '<br/><br/><br/>';
+                        for ($page=1; $page <= $total_pages ; $page++):?>
+                            <ul class="pagination">
+                                 <li><a href='<?php echo "?page=$page"; ?>' class="links"><?php  echo $page; ?> </a></li>
+                            </ul>
+                        <?php endfor; echo '<br/><br/><br/>';?>
                     </div>
                 </div>
             </div>

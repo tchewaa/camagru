@@ -1,5 +1,5 @@
 <?php
-require("includes/header_index.php");
+require("includes/header.php");
 ?>
 
 <main>
@@ -43,7 +43,7 @@ require("includes/header_index.php");
                                         }else{
                                             $hashed = $user['password'];
                                             $checkPassword = password_verify($password, $hashed);
-                                            if($checkPassword)                                            {
+                                            if($checkPassword){
                                                 $_SESSION['user_id'] = $user["user_id"];
                                                 $_SESSION['username'] = $user["username"];
                                                 $_SESSION['password'] = $user["password"];
@@ -52,7 +52,7 @@ require("includes/header_index.php");
                                                 $_SESSION['profile_pic'] = $user["profile_pic_url"];
                                                 $_SESSION['privacy_level'] = $user["privacy_level"];
                                                 $_SESSION['receive_email'] = $user["receive_email"];
-                                                header("Location: timeline.php");
+                                                header("Location: explore.php");
                                                 exit;
                                             }else{
                                                 $error = "Error: Incorrect email address / password combination.";
