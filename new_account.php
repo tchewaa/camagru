@@ -1,5 +1,5 @@
 <?php
-require("includes/header_index.php");
+require("includes/header.php");
 
 if (isset($_POST['signup']))
 {
@@ -41,23 +41,23 @@ if (isset($_POST['signup']))
                 $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`, `receive_email`) 
                 VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."','".$receive_email."')";
                 $conn->exec($sql);
-                /*$message = "
+                $message = "
                         Hi $username, <br/><br/>
                         Thank you for registering on Camagru, to access Camagru, please click on the link below and verify your email address.<br/><br/>
-                        <a href='http://127.0.0.1:8080/camagru/verify.php?email_address='.$email_address.'&token='.$token.'>
-                        http://127.0.0.1:8080/camagru/verify.php?email_address='.$email_address.'&token='.$token.
-                        </a><br/><br/>
+                        <a href='http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token'>
+                        http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token</a><br/><br/>
                         Kind Regards<br/><br/><br/>
                         Camagru Team!<br/>
                         ";
-                $mail = mail($email_address,"Camagru Email Verification", $message,"FROM Camagru"); */
-                //if (!$mail)
-                //{
-                //    $error = "Error: Could not send an email address";
-                //} else{
+                $from = "Camagru";
+                $headers = "From:" . $from; 
+                if(!mail($email_address,"Camagru Email Verification", $message,$headers))
+                {
+                    $error = "Error: Could not send an email address";
+                } else{
                     echo "<script language='javascript'>alert('Your account has been registered successfully');</script>"; 
                     header("refresh:0.5; url=index.php");
-               // }
+                }
             }catch(PDOException $e)
             {
                 $error = "Error: ".$e->getMessage();

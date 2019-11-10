@@ -1,6 +1,6 @@
 
 <?php
-    require("includes/header_index.php");
+   require("includes/header.php");
     if(isset($_POST['reset-submit']))
     {
         $username_email = $_POST['user_email'];
@@ -22,22 +22,22 @@
                 $stmt->bindValue(':email_address', $username_email);
                 if($stmt->execute() && $stmt->rowCount() == 1)
                 {
-                    /*$message = "
+                    $message = "
                             Hi Camagruian!!!, <br/><br/>
                             Click on the link below to reset your password.<br/><br/>
-                            <a href='http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address='.$username_email.'&token='.$token.'>
-                            http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address='.$username_email.'&token='.$token.
-                            </a><br/><br/>
+                            <a href='http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address=$username_email&token=$token>
+                            http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address=$username_email&token=$token</a><br/><br/>
                             Kind Regards<br/><br/><br/>
                             Camagru Team!<br/>
-                            ";*/
-                    //$mail = mail($email_address,"Reset Password", $message,"FROM Camagru"); 
-                    //if (!$mail)
-                    //{
-                    //    $error = "Error: Could not send an email address";
-                    //} else{
+                            ";
+                    if (!mail($username_email,"Reset Password", $message,"FROM Camagru"))
+                    {
+                        $error = "Error: Could not send an email address";
+                    } else
+                    {
                         echo "<script language='javascript'>alert('Check your email to reset your password');</script>"; 
                         header("refresh:0.5; url=index.php");
+                    }
                 }else{
                     $error = "Error: The account with ".$username_email." does not exist.<br/> Create an account";
                 }

@@ -8,7 +8,7 @@
 
             <div class="row">
                  <div class="profile_pic">
-                    <img src="upload/no-profile-pic-icon-5.jpg">
+                    <img src="upload/no_profile.png">
                  </div>
 
                  <div class="profile_info">

@@ -1,5 +1,5 @@
 <?php
-require("./db_connection.php");
+require("./config/db_connect.php");
 session_start();
 /*if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
 {

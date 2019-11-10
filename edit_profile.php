@@ -43,7 +43,7 @@
                                  <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                                 <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
                                 Name<br/><input type="text" value = "<?php if(isset($_SESSION['fullname'])){echo $_SESSION['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
-                                Username<br/><input readonly type="text" value = "<?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}?>" name="username" placeholder="Username"><br/><br/>
+                                Username<br/><input type="text" value = "<?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}?>" name="username" placeholder="Username"><br/><br/>
                                 Email Address<br/><input type="text" value = "<?php if(isset($_SESSION['email_address'])){echo $_SESSION['email_address'];}?>" name="email_address" placeholder="Username"><br/><br/>
                                 Receive Email Notification ?<br/>
                                 Yes <input type="radio" name="receive_email" value="Yes"<? if ($_SESSION['receive_email'] == "Yes") echo " checked"; ?>> <br/>

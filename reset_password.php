@@ -1,6 +1,6 @@
 
 <?php
-    require("includes/header_index.php");
+    require("includes/header.php");
     //echo "Printing 1";
     if (isset($_GET["action"]) && $_GET["action"] == "exists"){
         //echo "Printing 2";
@@ -9,8 +9,6 @@
             $email_address = $_GET['email_address'];
             $token = $_GET['token'];
             try{
-                $conn = new PDO("mysql:host=$servername;dbname=camagru_db", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $stmt = $conn->prepare("SELECT `password`,`email_address`,`token` FROM `users` WHERE email_address = :email_address AND token = :token;"); 
                 $stmt->bindValue(':email_address', $email_address);
                 $stmt->bindValue(':token', $token);
@@ -20,7 +18,7 @@
                 if($user === false){
                     header("Location: index.php");
                 }
-                //echo "Printing";
+                echo "Printing";
                 $_SESSION["temp_mails"] = $_GET['email_address'];
 
             }catch(PDOException $e){
@@ -36,8 +34,6 @@
         try{
 
             $hashing = password_hash($newPass, PASSWORD_DEFAULT);
-            $conn = new PDO("mysql:host=$servername;dbname=camagru_db", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stm = $conn->prepare("UPDATE `users` SET `password` = :pass WHERE email_address = :email_address;");
             $stm->bindValue(':email_address', $email);
             $stm->bindValue(':pass', $hashing );

@@ -73,17 +73,19 @@
                             echo '<p class="error" style="font-weight:bold;padding:16px"> You have to be logged in to comment.</p>';
                         }
                         else{
+                                  
                            $image_id = $_SESSION["temp_post_id"];
-                           $stmt = $conn->prepare("select i.image_id, c.image_id, c.comment, c.comment_date from comments c, image i where i.image_id = '".$image_id."' AND c.image_id = '".$image_id."' ORDER by comment_date DESC");
+                           $user_id = $_SESSION['user_id'];
+                           $stmt = $conn->prepare("select u.user_id, u.username, i.image_id, c.image_id, c.user_id, c.comment, c.comment_date from comments c, image i, users u where u.user_id = '".$user_id."' AND c.user_id = '".$user_id."' AND i.image_id = '".$image_id."' AND c.image_id = '".$image_id."' ORDER by comment_date DESC");
                             $stmt->execute();
                             if ($stmt === false){                                            
                                 $error = "Error: Could not fetch data from the database.";
                             }else{ 
                                 foreach ($stmt as $row) {
-                                    //$new_date = date_format($row["comment_date"], 'g:ia \o\n l jS F Y');
                                     $time = strtotime(str_replace('/','-',$row["comment_date"]));
                                     $myFormatForView = date("m/d/Y g:i (A)", $time);
                                     echo "<div class='comments-container'>";
+                                    echo     "<p>".$row['username']."</p>";
                                     echo    "<div class='post-tools'>";
                                     echo        "<div class=''>";
                                     echo                $row['comment']."<br/><p class='right'>".$myFormatForView.'</p>';
