@@ -40,6 +40,8 @@
                         <h4 class="right">Edit Profile</h4>
                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                                 <br/>
+
+                                                                  
                                  <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                                 <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
                                 Name<br/><input type="text" value = "<?php if(isset($_SESSION['fullname'])){echo $_SESSION['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
@@ -47,8 +49,8 @@
                                 Email Address<br/><input type="text" value = "<?php if(isset($_SESSION['email_address'])){echo $_SESSION['email_address'];}?>" name="email_address" placeholder="Username"><br/><br/>
                                 Receive Email Notification ?<br/>
                                 Yes <input type="radio" name="receive_email" value="Yes"<? if ($_SESSION['receive_email'] == "Yes") echo " checked"; ?>> <br/>
-                                No <input type="radio" name="receive_email" value="No"<? if ($_SESSION['receive_email'] == "No") echo " checked"; ?>><br/>
-                                Currently Set to: <b><? echo $_SESSION['receive_email'];?> <br/><br/>
+                                No <input type="radio" name="receive_email" value="No"<? if ($_SESSION['receive_email'] == "No") echo " checked"; ?>><br/><br/>
+                                Currently Set to: <?php echo $_SESSION['receive_email']; ?>  <br/><br/><br/>
                                 <button class ="primary-button" type="submit" name="save">Save</button><br/><br/>
                                
                             </form>
