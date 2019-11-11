@@ -56,7 +56,7 @@ if (isset($_POST['signup']))
                     $error = "Error: Could not send an email address";
                 } else{
                     echo "<script language='javascript'>alert('Your account has been registered successfully');</script>"; 
-                    header("refresh:0.5; url=index.php");
+                    header("refresh:0.5; url=signin.php");
                 }
             }catch(PDOException $e)
             {

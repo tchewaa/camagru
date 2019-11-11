@@ -16,7 +16,7 @@
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 //Redirect if  token and email dont exist in the table
                 if($user === false){
-                    header("Location: index.php");
+                    header("Location: signin.php");
                 }
                 echo "Printing";
                 $_SESSION["temp_mails"] = $_GET['email_address'];
@@ -25,7 +25,7 @@
                 $error = "Error ".$e->getMessage();
             }
         }else{
-            header("Location: index.php");
+            header("Location: signin.php");
         }
     }else if(isset($_POST['changePassword'])){
         $newPass = $_POST['newPassword'];
@@ -40,7 +40,7 @@
             if($stm->execute())
             {
                 echo "<script language='javascript'>alert('Your password has been reset');</script>"; 
-                header("refresh:0.5;url=index.php");
+                header("refresh:0.5;url=signin.php");
             }else{
                 $error = "Error: Something went wrong, try again later";
             }

@@ -36,6 +36,7 @@ catch(PDOException $e)
         $sql .= "ALTER TABLE `comments` CHANGE `comment_id` `comment_id` INT(11) NOT NULL AUTO_INCREMENT;";
         $sql .= "ALTER TABLE `likes` CHANGE `image_id` `image_id` INT(11) NOT NULL AUTO_INCREMENT;";
         $conn->exec($sql);
+        header("Location: ../signin.php");
     }
     catch(PDOException $e)
     {

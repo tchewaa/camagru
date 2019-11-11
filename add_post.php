@@ -3,7 +3,7 @@
     require("includes/header.php");
     if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
     {
-        header("Location: index.php");
+        header("Location: signin.php");
     }
 ?>
 <main>
@@ -68,8 +68,6 @@
                                     }catch(PDOException $e)
                                     {
                                         $error = "Error: ".$e->getMessage()."<br/> ".$image;
-
-
                                     }
                                 }
                             }

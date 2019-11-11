@@ -3,13 +3,13 @@
     require("includes/header.php");
     if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
     {
-        header("Location: index.php");
+        header("Location: signin.php");
     }
     if (isset($_POST['save']))
     {
         $fullname = $_POST['fullname'];
         $username = $_POST['username'];
-        $email_address = $_POST['email_address'];
+        $email_address = strtolower($_POST['email_address']);
         $receive_email = $_POST['receive_email'];
 
         if (empty($fullname) || empty($username) || empty($email_address))
@@ -20,7 +20,9 @@
             $error = "Invalid email address.";
         } 
         else {
-            
+            if (isset($username)) {
+                $_SESSION["username"] = $username;
+            }
             try{
                 $sql = "UPDATE `users` SET `fullname` = '".$fullname."', `username` = '".$username."', `email_address` = '".$email_address."' , `receive_email` = '".$receive_email."' WHERE `user_id` = '".$_SESSION["user_id"]."'";
                 $conn->exec($sql);

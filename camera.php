@@ -3,7 +3,7 @@
     require("includes/header.php");
     if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
     {
-        header("Location: index.php");
+        header("Location: signin.php");
     }
 ?>
 <main>
@@ -13,61 +13,6 @@
                     <div class="profile_container">
                         <h4 class="right">Camera Post</h4>
                         <?php
-                               /*if(isset($_POST['UploadImage']))
-                               {
-                           
-
-                                   if(isset($_FILES['image']))
-                                   {
-                                       echo "Image SET"; 
-                           
-                                       $errors=array();
-                                       $allowed_ext= array('jpg','jpeg','png','gif');
-                                       $file_name =$_FILES['image']['name'];
-                                   //   $file_name =$_FILES['image']['tmp_name'];
-                                       $file_ext = strtolower( end(explode('.',$file_name)));
-                           
-                           
-                                       $file_size=$_FILES['image']['size'];
-                                       $file_tmp= $_FILES['image']['tmp_name'];
-                                       echo $file_tmp;echo "<br>";
-                           
-                                       $type = pathinfo($file_tmp, PATHINFO_EXTENSION);
-                                       $data = file_get_contents($file_tmp);
-                                       $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                                       echo "Base64 is ".$base64;
-                           
-                           
-                           
-                                       if(in_array($file_ext,$allowed_ext) === false)
-                                       {
-                                           $errors[]='Extension not allowed';
-                                       }
-                           
-                                       if($file_size > 2097152)
-                                       {
-                                           $errors[]= 'File size must be under 2mb';
-                           
-                                       }
-                                       if(empty($errors))
-                                       {
-                                       if( move_uploaded_file($file_tmp, 'upload/'.$file_name));
-                                       {
-                                           echo 'File uploaded';
-                                       }
-                                       }
-                                       else
-                                       {
-                                           foreach($errors as $error)
-                                           {
-                                               echo $error , '<br/>'; 
-                                           }
-                                       }
-                                    print_r($errors);
-                           
-                                   }
-                               }*/
-
                             if(isset($_POST['UploadImage'])){
                                 define('UPLOAD_DIR', 'img/');
                         

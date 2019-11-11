@@ -30,7 +30,7 @@
                     $stmt_2->execute();
 
                     echo "<script language='javascript'>alert('Your email address has been verified');</script>"; 
-                    header("refresh:0.5; url=index.php");                
+                    header("refresh:0.5; url=signin.php");                
                 }
             }
             catch(PDOException $e){
@@ -39,7 +39,7 @@
         }
         else{
             echo "<script language='javascript'>alert('Could not verify your account.  Contact Camagru Team!');</script>"; 
-            header("refresh:0.5; url=index.php");  
+            header("refresh:0.5; url=signin.php");  
         }
     }
 ?>

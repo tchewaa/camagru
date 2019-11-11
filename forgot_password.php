@@ -3,7 +3,7 @@
    require("includes/header.php");
     if(isset($_POST['reset-submit']))
     {
-        $username_email = $_POST['user_email'];
+        $username_email = strtolower($_POST['user_email']);
         $token = "1234567890aqswedxzcfvbgrtyhnjuikmlopPLOKIMJUYHNBTFVRDEXCSWAQZ";
         $token = str_shuffle($token);
         $token = substr($token, 0, 30);
@@ -36,7 +36,7 @@
                     } else
                     {
                         echo "<script language='javascript'>alert('Check your email to reset your password');</script>"; 
-                        header("refresh:0.5; url=index.php");
+                        header("refresh:0.5; url=signin.php");
                     }
                 }else{
                     $error = "Error: The account with ".$username_email." does not exist.<br/> Create an account";
@@ -99,7 +99,7 @@
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                             <input type="text" name="user_email" placeholder="Email Address"><br><br/>
                             <button class ="primary-button" type="submit" name="reset-submit">Reset Password</button><br/><br/>
-                            <a href="index.php">Sign In</a>
+                            <a href="signin.php">Sign In</a>
                             <br/><br/>Have an account? <a href="new_account.php">Sign Up</a>
                         </form>
                     </div>

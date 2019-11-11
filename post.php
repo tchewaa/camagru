@@ -38,7 +38,7 @@
                     <div class="timeline_feeds" style="width:100% !important; text-align:center">
                     <h4 class="right">Post</h4>
 
-                    <?php
+<?php
                     if (isset($_GET["action"]) && $_GET["action"] == "post"){
                         if (isset($_GET['id']))
                         {
@@ -66,7 +66,7 @@
                             }
                         }
                     }  
-                       ?> 
+    ?> 
                         <?php 
                         if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
                         { 
