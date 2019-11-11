@@ -19,10 +19,8 @@
                 $sql = "INSERT INTO `comments` (`comment_id`, `image_id`, `user_id`, `comment`, `comment_date`) 
                 VALUES (NULL,'".$image_id."','".$user_id."', '".$comment."','".$timestamp."')";
                 if($conn->exec($sql))
-                {
-                    echo "<script language='javascript'>alert('Added a comment');</script>"; 
-                    header("refresh:0.1; url=explore.php");
-
+                { 
+                    header("refresh:0.1; url=post.php?action=post&id=$image_id");
                 }else{
                     echo "<script language='javascript'>alert('Could not add a comment');</script>"; 
                 }
@@ -46,6 +44,7 @@
                         {
 
                             $image_id = $_GET['id'];
+                            $user_id = $_SESSION['user_id'];
                             try{
                                 $stmt = $conn->prepare("SELECT * FROM `image` WHERE image_id = '".$image_id."'"); 
                                 $stmt->execute();
@@ -56,7 +55,13 @@
                                         echo "<div class='post-container'>";
                                         echo    "<img src='".$row['image_name']."' alt='Posts' class='image'>";
                                         echo    "<div class='post-tools'>";
-                                        echo        "<div class=''>Comments<br/><br/></div>";  
+                                        if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
+                                        { 
+                                            echo '<p></p>';
+                                        }else{
+                                            
+                                            echo        "<div class=''><a href='like.php?action=like&userid=$user_id&postid=$image_id'>Likes</a> | Comments<br/><br/></div>";  
+                                        }
                                         echo    "<p style='font-size:18px; font-weight:bold'>".$row['image_caption'].".</p>";
                                         echo     "</div>";
                                         echo "</div>";
