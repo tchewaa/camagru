@@ -55,14 +55,7 @@
                                         echo "<div class='post-container'>";
                                         echo    "<img src='".$row['image_name']."' alt='Posts' class='image'>";
                                         echo    "<div class='post-tools'>";
-                                        if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
-                                        { 
-                                            echo '<p></p>';
-                                        }else{
-                                            
-                                            echo        "<div class=''><a href='like.php?action=like&userid=$user_id&postid=$image_id'>Likes</a> | Comments<br/><br/></div>";  
-                                        }
-                                        echo    "<p style='font-size:18px; font-weight:bold'>".$row['image_caption'].".</p>";
+                                        echo     "<p style='font-size:18px; font-weight:bold'>".$row['image_caption'].".</p>";
                                         echo     "</div>";
                                         echo "</div>";
                                     }
