@@ -13,7 +13,6 @@
                 <div class="row">
                     <div class="timeline_feeds" style="width:100% !important; text-align:center">
                     <h4 class="right">Post</h4>
-
                     <?php
                     if (isset($_GET["action"]) && $_GET["action"] == "delete"){
                         if (isset($_GET['id']))
