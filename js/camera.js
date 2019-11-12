@@ -1,3 +1,4 @@
+ 
 // declare global variables
 
 let width = 500,
@@ -13,6 +14,7 @@ const photos = document.getElementById('photos');
 const clearButton = document.getElementById('clear-button');
 const photoButton = document.getElementById('photo-button');
 const photoFilter = document.getElementById('photo-filter');
+const stickerFilter = document.getElementById('nerd');
 
 
 // get the webcam onto the browser
@@ -69,6 +71,30 @@ photoFilter.addEventListener('change', function(e) {
 
 });
 
+
+stickerFilter.addEventListener('click', function() {
+
+    alert("Yo");
+
+
+    if (document.getElementById("imoji1").hasAttribute("src"))
+    {
+        alert("check");
+        document.getElementById("imoji1").setAttribute("src",stickerFilter.src)
+        document.getElementById("imoji1").style.display = "inline-block"
+    }
+    else{
+        alert("check");
+        document.getElementById("imoji2").setAttribute("src",stickerFilter.src)
+        document.getElementById("imoji2").style.display = "inline-block"
+    }
+
+    // video.style.filter = filter;
+
+    // e.preventDefault();
+
+});
+
 // event to clear out the photos
 
 clearButton.addEventListener('click', function(e) {
@@ -84,6 +110,8 @@ clearButton.addEventListener('click', function(e) {
 function takePicture() {
     const context = canvas.getContext('2d');
 
+    // filter = e.target.value;
+
     if (width && height) {
         canvas.width = width;
         canvas.height = height;
@@ -94,6 +122,7 @@ function takePicture() {
 
         const imgUrl = canvas.toDataURL('image/png');
 
+
         // create image element
 
         const img = document.createElement('img');
@@ -103,6 +132,8 @@ function takePicture() {
         img.setAttribute('src', imgUrl);
 
         img.setAttribute('name', "image");
+
+        // img.setAttribute('style', filter);
 
 
         img.style.filter = filter;
@@ -135,3 +166,4 @@ function myCameraUpload() {
     };
     xhr.send(fd);
 };
+

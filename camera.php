@@ -31,6 +31,9 @@
                         <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                         <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
                         <video id="video">No streaming available...</video>
+                        <img id="imoji1" src="" style="display:none"/>
+                        <img id="imoji2" src="" style="display:none"/>
+
                         <div class="top-container">
                             <button id="photo-button" class="btn btn-dark">Take Photo</button><br/>
                             <button class ="primary-button" name="UploadImage" onclick="myCameraUpload()">Upload A Photo</button>
@@ -44,6 +47,14 @@
                                 <option value="contrast(200%)">Contrast</option>
                             </select>
                             <button id="clear-button" class="btn btn-light">Clear</button>
+                            <div>
+                            
+                            <img id = "nerd" width="50px" height="50px" id="nerd" src="images/nerd.png"> <input type="radio" name="stickers"> <br/>
+                            <img width="50px" height="50px" id="kya" src="images/kya.png"> <input type="radio" name="stickers">
+                            <img width="50px" height="50px" id="skull" src="images/skull.png"> <input type="radio" name="stickers">
+                            <img width="50px" height="50px" id="light" src="images/light.png"> <input type="radio" name="stickers">
+                            </div>
+                            
                             
                         </div>
                         
