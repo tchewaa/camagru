@@ -22,14 +22,23 @@
                 $stmt->bindValue(':email_address', $username_email);
                 if($stmt->execute() && $stmt->rowCount() == 1)
                 {
-                    $message = "
+                    /*$message = "
                             Hi Camagruian!!!, <br/><br/>
                             Click on the link below to reset your password.<br/><br/>
                             <a href='http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address=$username_email&token=$token>
                             http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address=$username_email&token=$token</a><br/><br/>
                             Kind Regards<br/><br/><br/>
                             Camagru Team!<br/>
+                            ";*/
+                            $message = "
+                            Hi Hi Camagruian!!!, <br/><br/>
+                            Thank you for queries on Camagru, to reset your password, please click on the link below.<br/><br/>
+                            <a href='http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address=$username_email&token=$token'>
+                            http://127.0.0.1:8080/camagru/reset_password.php?action=exists&email_address=$username_email&token=$token</a><br/><br/>
+                            Kind Regards<br/><br/><br/>
+                            Camagru Team!<br/>
                             ";
+
                     if (!mail($username_email,"Reset Password", $message,"FROM Camagru"))
                     {
                         $error = "Error: Could not send an email address";
