@@ -18,7 +18,6 @@
                 if($user === false){
                     header("Location: signin.php");
                 }
-                echo "Printing";
                 $_SESSION["temp_mails"] = $_GET['email_address'];
 
             }catch(PDOException $e){
