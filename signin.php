@@ -7,7 +7,8 @@ require("includes/header.php");
         <section class="register-class">
             <div class="container">
                 <div class="row">
-                    <div style="text-align:center" class="reg-form login-box">
+                    <div class="timeline_feeds" style="width:100% !important; text-align:center" class="reg-form login-box">
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                         <p><span style="border: 2px solid #000 !important" class="icon">C</span><br/><br/><a style="color:#000; font-size:30px" class="link" href="index.php">Camagru</a></p>
                         <br/><br/>
                         <?php
@@ -69,10 +70,11 @@ require("includes/header.php");
                             <button class ="primary-button" type="submit" name="sign_in">Sign In</button><br/><br/>
                             <a href="forgot_password.php">Forgot Password?</a>
                             <br/><br/>Have an account? <a href="new_account.php">Sign Up</a>
-                        </form>
+                        </form><br/><br/><br/><br/><br/><br/><br/><br/>
                     </div>
                 </div>
             </div>
+            
         </section>
 </main>
 <?php

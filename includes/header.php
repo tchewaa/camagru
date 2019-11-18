@@ -22,7 +22,7 @@ session_start();
                 <div class="row">
                     <div class="menu">
                         <div class="logo">
-                            <p><span class="icon">C</span><a class="link" href="#">Camagru</a></p>
+                            <p><span class="icon">C</span><a class="link" href="explore.php">Camagru</a></p>
                             <p></p>
                         </div>
                         <ul>

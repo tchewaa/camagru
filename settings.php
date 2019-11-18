@@ -52,6 +52,10 @@
                             {
                                 $error = "Error:<ul class='error' style='margin-left:25px'><li>Password should be at least 8 characters in length.</ll> <li>Password should include at least one upper case letter.</li> <li> Password should have one number, and one special character.</li></ul>";
                             }
+                            else if ($newPass !== $confirmedPass)
+                            {
+                                $error = "Passwords are not the same.";
+                            }
                             else{
                                 try{
                                         $stmt = $conn->prepare("SELECT `email_address`,`password` FROM `users` WHERE email_address = :email_address;"); 

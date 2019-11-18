@@ -7,74 +7,58 @@
     }
 ?>
 <main>
-        <section class="timeline_section">
+    <section class="timeline_section">
             <div class="container">
                 <div class="row" style="width:82% !important">
                     <div class="profile_container">
                         <h4 class="right">Camera Post</h4>
-                        <?php
-                            if(isset($_POST['UploadImage'])){
-                                define('UPLOAD_DIR', 'img/');
                         
-                                $img = $_POST['image'];
-                        
-                                $img = str_replace('data:image/png;base64,', '', $img);
-                                $img = str_replace(' ', '+', $img);
-                                $data = base64_decode($img);
-                                $file = UPLOAD_DIR . uniqid() . '.png';
-                                $success = file_put_contents($file, $data);
-                        
-                                print $success ? $file : 'Unable to save the file.';
-                            }		
-                        
-                        ?>
-                        <p><span class="error"><?php if (isset($error)) echo $error ?></span>
-                        <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
-                        <video id="video">No streaming available...</video>
-                        <img id="imoji1" src="" style="display:none"/>
-                        <img id="imoji2" src="" style="display:none"/>
-
-                        <div class="top-container">
-                            <button id="photo-button" class="btn btn-dark">Take Photo</button><br/>
-                            <button class ="primary-button" name="UploadImage" onclick="myCameraUpload()">Upload A Photo</button>
-                            <select id="photo-filter" class="select">
-                                <option value="none">Normal</option>
-                                <option value="grayscale(100%">Grayscale</option>
-                                <option value="sepia(100%)">Sepia</option>
-                                <option value="invert(100%)">Invert</option>
-                                <option value="hue-rotate(90deg)">Hue</option>
-                                <option value="blur(10px)">Blur</option>
-                                <option value="contrast(200%)">Contrast</option>
-                            </select>
-                            <button id="clear-button" class="btn btn-light">Clear</button>
-                            <div>
-                            
-                            <img id = "nerd" width="50px" height="50px" id="nerd" src="images/nerd.png"> <input type="radio" name="stickers"> <br/>
-                            <img width="50px" height="50px" id="kya" src="images/kya.png"> <input type="radio" name="stickers">
-                            <img width="50px" height="50px" id="skull" src="images/skull.png"> <input type="radio" name="stickers">
-                            <img width="50px" height="50px" id="light" src="images/light.png"> <input type="radio" name="stickers">
+                     <div style="text-align:center">
+                        <div>
+                            <div style="margin-bottom: 15px">
+                                <img id="kya"  src="stickers/kya.png" alt="kya" width=100 height=100>
+                                <img id="light" src="stickers/light.png" alt="light" width=100 height=100>
+                                <img id="nerd" src="stickers/nerd.png" alt="nerd" width=100 height=100>
+                                <img id="skull" src="stickers/skull.png" alt="skull" width=100 height=100>
                             </div>
-                            
-                            
-                        </div>
-                        
-                        <canvas id="canvas"></canvas>
-                        <div class="bottom-container">
-                            <div id="photos"></div>
-                        </div>  
-                        <form method="post" accept-charset="utf-8" name="form1">
-                            <input name="hidden_data" id='hidden_data' type="hidden" />
-                        </form>             
+
+
+                            <div style="margin-bottom: 15px">
+                                <video id="video" autoplay></video><br/>
+                            </div>
+                            <div style="margin-bottom: 15px">
+                                <button class="btn profile_buttons outline" id="snap">Capture</button>
+                                <select id="stickers" style="font-size: 20px;height: 40px;">
+                                    <option value="none">none</option>
+                                    <option value="kya">kya</option>
+                                    <option value="light">light</option>
+                                    <option value="nerd">nerd</option>
+                                    <option value="skull">skull</option>
+                                </select>
+                                <button class="btn profile_buttons outline" id="apply">Apply</button>
+                                <button class="btn profile_buttons blue" id="save" name="img">Upload</button>
+                            </div>
+                            <div style="margin-bottom: 15px">
+                                    <canvas id="edit" width=416 height=300></canvas>
+                            </div>
                     </div>
-                    
-                </div>
+                           
+                            <br>
+                        </div>
+                    <div>
+                </div>  
+
+                       
+                            
+                </div>              
             </div>
-        </section>
+        </div>
+    </section>
 </main>
 <?php
     require "includes/footer.php";
 ?>
 </body>
-<script src="./js/camera.js"></script>
+<script src="camera.js"></script>
 
 </html>

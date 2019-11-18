@@ -30,22 +30,57 @@
         $newPass = $_POST['newPassword'];
         $confirmedPass = $_POST['confirmPassword'];
         $email = $_SESSION['temp_mails'];
-        try{
 
-            $hashing = password_hash($newPass, PASSWORD_DEFAULT);
-            $stm = $conn->prepare("UPDATE `users` SET `password` = :pass WHERE email_address = :email_address;");
-            $stm->bindValue(':email_address', $email);
-            $stm->bindValue(':pass', $hashing );
-            if($stm->execute())
-            {
-                echo "<script language='javascript'>alert('Your password has been reset');</script>"; 
-                header("refresh:0.5;url=signin.php");
-            }else{
-                $error = "Error: Something went wrong, try again later";
-            }
-        }catch(PDOException $e){
-                $error = "Error: ".$e->getMessage();
+
+        $n_uppercase = preg_match('@[A-Z]@', $newPass);
+        $n_lowercase = preg_match('@[a-z]@', $newPass);
+        $n_number    = preg_match('@[0-9]@', $newPass);
+        $n_specialChars = preg_match('@[^\w]@', $newPass);
+
+        $c_uppercase = preg_match('@[A-Z]@', $confirmedPass);
+        $c_lowercase = preg_match('@[a-z]@', $confirmedPass);
+        $c_number    = preg_match('@[0-9]@', $confirmedPass);
+        $c_specialChars = preg_match('@[^\w]@', $confirmedPass);
+
+        if(empty($newPass) || empty($confirmedPass))
+        {
+            $error = "Error : Empty field are not allowed.";
         }
+        else if (!$n_uppercase || !$n_lowercase || !$n_number || !$n_specialChars || strlen($newPass) < 8)
+        {
+            $error = "Error:<ul class='error' style='margin-left:25px'><li>Password should be at least 8 characters in length.</ll> <li>Password should include at least one upper case letter.</li> <li> Password should have one number, and one special character.</li></ul>";
+        }
+        else if (!$c_uppercase || !$c_lowercase || !$c_number || !$c_specialChars || strlen($confirmedPass) < 8)
+        {
+            $error = "Error:<ul class='error' style='margin-left:25px'><li>Password should be at least 8 characters in length.</ll> <li>Password should include at least one upper case letter.</li> <li> Password should have one number, and one special character.</li></ul>";
+        }
+        else if ($newPass !== $confirmedPass)
+        {
+            $error = "Passwords are not the same.";
+        }
+        else{
+            try{
+
+                $hashing = password_hash($newPass, PASSWORD_DEFAULT);
+                $stm = $conn->prepare("UPDATE `users` SET `password` = :pass WHERE email_address = :email_address;");
+                $stm->bindValue(':email_address', $email);
+                $stm->bindValue(':pass', $hashing );
+                if($stm->execute())
+                {
+                    echo "<script language='javascript'>alert('Your password has been reset');</script>"; 
+                    header("refresh:0.5;url=signin.php");
+                }else{
+                    $error = "Error: Something went wrong, try again later";
+                }
+            }catch(PDOException $e){
+                    $error = "Error: ".$e->getMessage();
+            }
+        }
+
+
+
+       
+        
     }
 ?>
 <main>

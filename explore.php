@@ -27,7 +27,7 @@
 
                                 $starting_limit = ($page-1)*$limit;
 
-                                $stmt = $conn->prepare("SELECT i.image_id, i.user_id, i.image_caption, i.image_name, i.image_time FROM `image` i  ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
+                                $stmt = $conn->prepare("SELECT i.image_id, i.user_id, u.user_id, u.username, i.image_caption, i.image_name, i.image_time FROM `image` i, `users` u  WHERE u.user_id = i.user_id ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
                                 $stmt->execute();
                                 if ($stmt === false){                                            
                                     $error = "Error: Something went";
@@ -37,7 +37,8 @@
                                         echo "<img src='".$row['image_name']."' width='250px' height='250px' alt='Posts' class='image'>";
                                         echo    "<div class='overlay'>";
                                         echo        "<div class='text'>".$row['image_caption']."</div>";
-                                        echo    "</div>";
+                                        echo    "</div><br/>";
+                                        echo    $row['username'];
                                         echo "</div></a>";
                                         
                                     }

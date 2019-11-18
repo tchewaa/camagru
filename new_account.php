@@ -25,7 +25,7 @@ if (isset($_POST['signup']))
         $error = "Invalid email address.";
     } 
     else if ($password !== $confirm_password){
-        $error = "Password is not the same.";
+        $error = "Passwords are not the same.";
     } 
     else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
     {

@@ -6,6 +6,9 @@
             $postid = $_GET['postid'];
             try{
                 
+                $sql = "INSERT INTO `likes` (`image_id`, `liker_id`, `like_status`) VALUES ('".$postid."', '".$userid."', 1) ON DUPLICATE KEY UPDATE like_status=IF(like_status=1, 0, 1)";
+                $conn->exec($sql);
+
                 // $stmt = $conn->prepare("SELECT `image_id`,`liker_id`,`date` FROM `likes` WHERE `image_id`=:image_id AND `liker_id`=:like_id;"); 
                 // $stmt->bindValue(':image_id', $postid);
                 // $stmt->bindValue(':like_id', $userid);
@@ -14,8 +17,7 @@
                 // if ($user === false)
                 // {
                 
-                $sql = "INSERT INTO `likes` (`image_id`, `liker_id`, `like_status`) VALUES ('".$postid."', '".$userid."', 1) ON DUPLICATE KEY UPDATE like_status=IF(like_status=1, 0, 1)";
-                $conn->exec($sql);
+                
 
                 header("refresh:0.1; url=post.php?action=post&id=$postid");
                 // }
