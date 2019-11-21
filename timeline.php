@@ -16,7 +16,7 @@
                        <div class="small_profile_no_icon">
                        <?php
                         if(isset($_SESSION['profile_pic'])){
-                                echo $_SESSION["profile_pic"];
+                                echo "<img src=images/".$_SESSION['profile_pic']."/>";
                         }
                         else{
                                 echo '<img src="images/no-profile-pic-icon-5.jpg"/>';
@@ -34,20 +34,6 @@
                     </div>
                 </div>
             </div>
-
-             <!-- Trigger/Open The Modal 
-                <button id="myBtn">Open Modal</button>-->
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
-                </div>
-
-                </div> 
         </section>
 </main>
 <?php

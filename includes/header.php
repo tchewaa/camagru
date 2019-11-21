@@ -1,10 +1,10 @@
 <?php
-require("config/setup.php");
+require("./config/db_connect.php");
 session_start();
-if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic']))
+/*if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
 {
     header("Location: index.php");
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,6 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SES
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-    <script src="./js/functions.js"></script>  
     <title>Camagru</title>
 </head>
 <body>
@@ -23,14 +22,27 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SES
                 <div class="row">
                     <div class="menu">
                         <div class="logo">
-                            <p><span class="icon">C</span><a class="link" href="timeline.php">Camagru</a></p>
+                            <p><span class="icon">C</span><a class="link" href="explore.php">Camagru</a></p>
                             <p></p>
                         </div>
                         <ul>
-                            <li><a class="link" href="#"><i class="fa fa-indent" aria-hidden="true"></i> Explore</a></li>
-                            <li><a class="link" id ="myBtn"><i class="fa fa-list-alt" aria-hidden="true"></i>  Activity</a></li>
-                            <li><a class="link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                            <li><a class="link" href="logout.php">Sign Out</a></li>
+                            <?php
+                               if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
+                               {   
+                                    echo '<li><a class="link" href="explore.php"><i class="fa fa-indent" aria-hidden="true"></i> Explore</a></li>';
+                                    echo '<li><a class="link" href="signin.php">Sign in</a></li>';
+
+                                }else if(isset($_SESSION['user_id']) && isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESSION['fullname']) && isset($_SESSION['profile_pic'])  && isset($_SESSION['email_address']) && isset($_SESSION['receive_email']))
+                               {
+                                     echo '<li><a class="link" href="explore.php"><i class="fa fa-indent" aria-hidden="true"></i> Explore</a></li>';
+                                     echo '<li><a class="link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>';
+                                     echo '<li><a class="link" href="logout.php">Sign Out</a></li>';
+                               }else{
+                                    header("Location: signin.php");
+                               }
+                             ?>       
+                            
+                            
                         </ul>
                     </div>
                 </div>

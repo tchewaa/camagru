@@ -1,5 +1,5 @@
 <?php
-require("includes/header_index.php");
+require("includes/header.php");
 
 if (isset($_POST['signup']))
 {
@@ -14,7 +14,9 @@ if (isset($_POST['signup']))
     $specialChars = preg_match('@[^\w]@', $password);
     $error = "";
     $success = "";
-    $verify = rand();
+    $token = "1234567890aqswedxzcfvbgrtyhnjuikmlopPLOKIMJUYHNBTFVRDEXCSWAQZ";
+    $token = str_shuffle($token);
+    $token = substr($token, 0, 30);
 
     if (empty($fullname) || empty($username) || empty($password) || empty($email_address)){
         $error = "Fill all the fields.";
@@ -23,7 +25,7 @@ if (isset($_POST['signup']))
         $error = "Invalid email address.";
     } 
     else if ($password !== $confirm_password){
-        $error = "Password is not the same.";
+        $error = "Passwords are not the same.";
     } 
     else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8)
     {
@@ -34,14 +36,28 @@ if (isset($_POST['signup']))
             $profile_pic_url = NULL;
             $privacy_level = 0;
             $active = 0;
+            $receive_email = "Yes";
             try{
-                $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`verify_key`,`profile_pic_url`, `privacy_level`) 
-                VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$verify."','".$profile_pic_url."', '".$privacy_level."')";
+                $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`, `receive_email`) 
+                VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."','".$receive_email."')";
                 $conn->exec($sql);
-                $message = "Account Confirm 
-                        http://localhost/camagru/verify.php?email_address=".$email_address."&key=".$verify."";
-                mail($email_address,"Camagru Account Email Verification", $message,"FROM Camagru");   
-                header("Location: index.php");
+                $message = "
+                        Hi $username, <br/><br/>
+                        Thank you for registering on Camagru, to access Camagru, please click on the link below and verify your email address.<br/><br/>
+                        <a href='http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token'>
+                        http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token</a><br/><br/>
+                        Kind Regards<br/><br/><br/>
+                        Camagru Team!<br/>
+                        ";
+                $from = "Camagru";
+                $headers = "From:" . $from; 
+                if(!mail($email_address,"Camagru Email Verification", $message,$headers))
+                {
+                    $error = "Error: Could not send an email address";
+                } else{
+                    echo "<script language='javascript'>alert('Your account has been registered successfully');</script>"; 
+                    header("refresh:0.5; url=signin.php");
+                }
             }catch(PDOException $e)
             {
                 $error = "Error: ".$e->getMessage();

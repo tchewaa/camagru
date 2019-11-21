@@ -31,13 +31,13 @@ header h1 {
 }
 
 nav {
-    background: cadetblue;
+    background: firebrick;
 }
 
 .sign-in {
     padding: 4px !important;
     background: wheat !important;
-    color: cadetblue !important;
+    color: firebrick !important;
 }
 
 .menu ul {
@@ -45,7 +45,6 @@ nav {
 }
 
 .logo {
-    display: inline-block;
     float: left;
     line-height: 60px;
     color: wheat;
@@ -73,7 +72,7 @@ nav {
     line-height: 50px;
     font-weight: bold;
     height: 50px;
-    background: cadetblue;
+    background: firebrick;
 }
 
 .menu ul li a:hover {
@@ -124,12 +123,12 @@ nav {
     font-weight: bold;
     top: 300px;
     position: absolute;
-    background: cadetblue;
+    background: firebrick;
     padding: 10px;
 }
 
 .intro {
-    background: cadetblue;
+    background: firebrick;
     height: 450px;
     text-align: center;
 }
@@ -156,7 +155,7 @@ nav {
     text-align: center;
     font-size: 25px;
     padding-top: 25px;
-    color: cadetblue;
+    color: firebrick;
     margin-bottom: 10px;
 }
 
@@ -172,7 +171,7 @@ nav {
     text-align: center;
     font-size: 25px;
     padding-top: 25px;
-    color: cadetblue;
+    color: firebrick;
     margin-bottom: 10px;
 }
 
@@ -182,15 +181,19 @@ nav {
 }
 
 .primary-button {
-    background: cadetblue;
+    background: firebrick;
     color: wheat;
     font-size: 14px;
     padding: 5px;
 }
 
 .footer {
-    background: #f5f5f5;
+    background: black !important;
     height: 200px;
+}
+
+footer {
+    background: black !important;
 }
 
 .card {
@@ -208,7 +211,7 @@ nav {
 .card-info {
     padding: 5px;
     color: wheat;
-    background: cadetblue;
+    background: firebrick;
     font-weight: bold;
 }
 
@@ -228,10 +231,14 @@ nav {
     display: inline-block;
     text-align: center;
     padding: 2px;
+    box-shadow: #afafaf 2px 2px;
+    background: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .sidebar_feeds {
+    box-shadow: #afafaf 2px 2px;
+    background: white;
     width: 30%;
     padding: 20px;
     display: inline-block;
@@ -252,7 +259,7 @@ nav {
     padding: 3px;
     display: inline-block;
     margin: 2px;
-    background: cadetblue;
+    background: firebrick;
     color: white;
 }
 
@@ -279,60 +286,6 @@ nav {
 .login-box {
     background: #f5f5f5;
     padding: 60px;
-}
-
-
-/* The Modal (background) */
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-}
-
-
-/* Modal Content/Box */
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    /* Could be more or less, depending on screen size */
-}
-
-
-/* The Close Button */
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .small_profile_no_icon {
@@ -363,21 +316,21 @@ nav {
 
 .profile_info {
     display: inline-block;
-    width: 60%;
+    width: 70%;
     padding: 20px;
     text-align: center;
 }
 
 .display_username {
-    display: inline-block;
-    width: 20%;
+    text-align: center;
     padding: 20px;
 }
 
 .profile_edit_button {
     display: inline-block;
-    width: 20%;
+    width: 100%;
     padding: 20px;
+    text-align: center;
 }
 
 .settings_icon {
@@ -431,5 +384,188 @@ nav {
 
 .profile_bio {
     padding: 20px;
-    width: 100px;
+    width: auto;
+}
+
+textarea {
+    width: 80%;
+    padding: 20px;
+    text-align: left;
+    overflow-y: scroll;
+    height: 100px;
+    resize: none;
+}
+
+.profile_container {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    box-shadow: #afafaf 2px 2px;
+    background: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.profile_container h4 {
+    margin: 10px;
+    border-right: firebrick 4px solid;
+    padding-right: 10px;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.securityDIV {
+    width: 40%;
+    display: inline-block;
+    padding: 20px;
+    text-align: left;
+}
+
+.notifyDIV {
+    width: 40%;
+    display: inline-block;
+    padding: 20px;
+    text-align: left;
+}
+
+
+/*.timeline_feeds img {
+    height: 300px;
+    width: 300px;
+    padding: 12px;
+}*/
+
+.timeline_feeds h4 {
+    margin: 10px;
+    border-right: firebrick 4px solid;
+    padding-right: 10px;
+}
+
+
+/*Image overlay for comments and likes*/
+
+.image-container {
+    position: relative;
+    width: 300px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*background-color: firebrick;*/
+    background: rgb(177, 13, 13);
+    /* Fallback color */
+    background: rgba(177, 17, 17, 0.7);
+    overflow: hidden;
+    width: 40%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.image-container:hover .overlay {
+    height: 100%;
+    width: 100%;
+}
+
+.text {
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.post-container {
+    width: auto;
+    display: inline-block;
+    padding: 10px;
+}
+
+.post-tools {
+    padding-top: 10px;
+    text-align: left;
+}
+
+.post-comment {
+    margin-top: 5px;
+    padding: 25px;
+    text-align: left;
+}
+
+.comments-container {
+    padding: 20px;
+    font-size: 14px;
+    text-align: left;
+    border: 1px solid #000;
+}
+
+.pagination {
+    margin: 2px;
+    display: inline-block;
+}
+
+.pagination ul {
+    list-style: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.pagination li {
+    list-style: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.pagination a {
+    background: firebrick;
+    color: wheat;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.top-container {
+    text-align: center;
+    width: 100%;
+}
+
+.video {
+    text-align: center;
+}
+
+.canvas {
+    display: inline-block;
+}
+
+.bottom-container {
+    display: inline-block;
+}
+
+#canvas {
+    display: none;
 }
