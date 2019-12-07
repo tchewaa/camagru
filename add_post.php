@@ -15,7 +15,7 @@
                         <?php
                             if(isset($_POST['UploadImage']))
                             {
-                                $caption = $_POST['caption'];
+                                $caption = htmlentities($_POST['caption'], ENT_QUOTES, 'UTF-8');
                                 $target_dir = "upload/";
                                 $target_file = $target_dir . basename($_FILES["image"]["name"]);
                                

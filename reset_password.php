@@ -27,20 +27,21 @@
             header("Location: signin.php");
         }
     }else if(isset($_POST['changePassword'])){
-        $newPass = $_POST['newPassword'];
-        $confirmedPass = $_POST['confirmPassword'];
-        $email = $_SESSION['temp_mails'];
+
+        $newPass = htmlentities($_POST['newPassword'], ENT_QUOTES, 'UTF-8');
+        $confirmedPass = htmlentities($_POST['confirmPassword'], ENT_QUOTES, 'UTF-8');
+        $email = htmlentities($_SESSION['temp_mails'], ENT_QUOTES, 'UTF-8');
 
 
-        $n_uppercase = preg_match('@[A-Z]@', $newPass);
-        $n_lowercase = preg_match('@[a-z]@', $newPass);
-        $n_number    = preg_match('@[0-9]@', $newPass);
-        $n_specialChars = preg_match('@[^\w]@', $newPass);
+        $n_uppercase = htmlentities(preg_match('@[A-Z]@', $newPass), ENT_QUOTES, 'UTF-8');
+        $n_lowercase = htmlentities(preg_match('@[a-z]@', $newPass), ENT_QUOTES, 'UTF-8');
+        $n_number    = htmlentities(preg_match('@[0-9]@', $newPass), ENT_QUOTES, 'UTF-8');
+        $n_specialChars = htmlentities(preg_match('@[^\w]@', $newPass), ENT_QUOTES, 'UTF-8');
 
-        $c_uppercase = preg_match('@[A-Z]@', $confirmedPass);
-        $c_lowercase = preg_match('@[a-z]@', $confirmedPass);
-        $c_number    = preg_match('@[0-9]@', $confirmedPass);
-        $c_specialChars = preg_match('@[^\w]@', $confirmedPass);
+        $c_uppercase = htmlentities(preg_match('@[A-Z]@', $confirmedPass), ENT_QUOTES, 'UTF-8');
+        $c_lowercase = htmlentities(preg_match('@[a-z]@', $confirmedPass), ENT_QUOTES, 'UTF-8');
+        $c_number    = htmlentities(preg_match('@[0-9]@', $confirmedPass), ENT_QUOTES, 'UTF-8');
+        $c_specialChars = htmlentities(preg_match('@[^\w]@', $confirmedPass), ENT_QUOTES, 'UTF-8');
 
         if(empty($newPass) || empty($confirmedPass))
         {

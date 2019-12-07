@@ -3,7 +3,7 @@
    require("includes/header.php");
     if(isset($_POST['reset-submit']))
     {
-        $username_email = strtolower($_POST['user_email']);
+        $username_email = htmlentities(strtolower($_POST['user_email']), ENT_QUOTES, 'UTF-8');
         $token = "1234567890aqswedxzcfvbgrtyhnjuikmlopPLOKIMJUYHNBTFVRDEXCSWAQZ";
         $token = str_shuffle($token);
         $token = substr($token, 0, 30);

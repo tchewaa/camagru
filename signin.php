@@ -14,8 +14,9 @@ require("includes/header.php");
                         <?php
                             if (isset($_POST['sign_in']))
                             {
-                                $email_address = strtolower($_POST['email_address']);
-                                $password = $_POST['password'];
+
+                                $email_address = htmlentities(strtolower($_POST['email_address']),ENT_QUOTES, 'UTF-8');
+                                $password = htmlentities($_POST['password']);
                                 $uppercase = preg_match('@[A-Z]@', $password);
                                 $lowercase = preg_match('@[a-z]@', $password);
                                 $number    = preg_match('@[0-9]@', $password);

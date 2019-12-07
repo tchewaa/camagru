@@ -3,11 +3,11 @@ require("includes/header.php");
 
 if (isset($_POST['signup']))
 {
-    $fullname = $_POST['fullname'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
-    $email_address = $_POST['email_address'];
+    $fullname = htmlentities($_POST['fullname'], ENT_QUOTES, 'UTF-8');
+    $username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8');
+    $password = htmlentities($_POST['password'], ENT_QUOTES, 'UTF-8');
+    $confirm_password = htmlentities($_POST['confirm_password'], ENT_QUOTES, 'UTF-8');
+    $email_address = htmlentities($_POST['email_address'], ENT_QUOTES, 'UTF-8');
     $uppercase = preg_match('@[A-Z]@', $password);
     $lowercase = preg_match('@[a-z]@', $password);
     $number    = preg_match('@[0-9]@', $password);
@@ -43,14 +43,14 @@ if (isset($_POST['signup']))
                 $conn->exec($sql);
                 $message = "
                         Hi $username, <br/><br/>
-                        Thank you for registering on Camagru, to access Camagru, please click on the link below and verify your email address.<br/><br/>
-                        <a href='http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token'>
-                        http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token</a><br/><br/>
+                        Thank you for registering on Camagru, to access Camagru, please <a href='http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token'>Click Here</a> to verify your email address.<br/><br/>
+                        
                         Kind Regards<br/><br/><br/>
                         Camagru Team!<br/>
                         ";
                 $from = "Camagru";
-                $headers = "From:" . $from; 
+                $headers = "From:" . htmlentities(strip_tags($from)); 
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 if(!mail($email_address,"Camagru Email Verification", $message,$headers))
                 {
                     $error = "Error: Could not send an email address";

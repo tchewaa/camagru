@@ -6,7 +6,7 @@
     if(isset($_POST['addComment']))
     {
         $image_id = $_SESSION["temp_post_id"];
-        $comment = $_POST['comment'];
+        $comment = htmlentities($_POST['comment'],ENT_QUOTES, 'UTF-8');
         $user_id = $_SESSION['user_id'];
         
         if (empty($comment))
