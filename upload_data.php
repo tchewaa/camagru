@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SES
     $timestamp_caption = date("Y-m-d H:i:s");
 
     $user_id = $_SESSION['user_id'];
-    $caption = "Selfie Time ".$timestamp_caption;
+    $caption = htmlentities("Selfie Time ".$timestamp_caption);
     $upload_dir = "upload/";
     $img = $_POST['img'];
     $img = str_replace('data:image/png;base64,', '', $img);

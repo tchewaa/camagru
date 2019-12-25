@@ -7,10 +7,10 @@
     }
     if (isset($_POST['save']))
     {
-        $fullname = $_POST['fullname'];
-        $username = $_POST['username'];
-        $email_address = strtolower($_POST['email_address']);
-        $receive_email = $_POST['receive_email'];
+        $fullname = htmlentities($_POST['fullname'], ENT_QUOTES, 'UTF-8');
+        $username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8');
+        $email_address = htmlentities(strtolower($_POST['email_address']), ENT_QUOTES, 'UTF-8');
+        $receive_email = htmlentities($_POST['receive_email'], ENT_QUOTES, 'UTF-8');
 
         if (empty($fullname) || empty($username) || empty($email_address))
         {

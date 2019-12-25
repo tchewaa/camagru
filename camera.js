@@ -2,20 +2,14 @@ const video = document.getElementById('video');
 const canvas = document.getElementById('edit');
 const snap = document.getElementById('snap');
 const apply = document.getElementById('apply');
-// const apply = document.getElementById('apply');
 const kya = document.getElementById('kya');
 const light = document.getElementById('light');
 const nerd = document.getElementById('nerd');
 const skull = document.getElementById('skull');
 
-feed();
+runCamera();
 
-var context = canvas.getContext('2d');
-snap.addEventListener("click", function () {
-    context.drawImage(video, 0, 0, 416, 300);
-});
-
-function feed() {
+function runCamera() {
 
     var constrains = {
         video: { width: 416, height: 300 }
@@ -24,6 +18,12 @@ function feed() {
         video.srcObject = stream;
     });
 }
+
+var context = canvas.getContext('2d');
+snap.addEventListener("click", function () {
+    context.drawImage(video, 0, 0, 416, 300);
+});
+
 apply.addEventListener("click", function() {
     var x = document.getElementById('stickers').value;
     if (x == "kya")
@@ -54,27 +54,4 @@ save.addEventListener("click", function () {
     xhttp.send(data);
 
 });
-
-/*function myCameraUpload() {
-    var canvas = document.getElementById("canvas");
-    var dataURL = canvas.toDataURL("image/png");
-    document.getElementById('hidden_data').value = dataURL;
-    var fd = new FormData(document.forms["form1"]);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'upload_data.php', true);
-
-    xhr.upload.onprogress = function(e) {
-        if (e.lengthComputable) {
-            var percentComplete = (e.loaded / e.total) * 100;
-            console.log(percentComplete + '% uploaded');
-            alert('Succesfully uploaded');
-        }
-    };
-
-    xhr.onload = function() {
-
-    };
-    xhr.send(fd);
-};*/
 

@@ -12,14 +12,14 @@ require("includes/header.php");
                             <?php
                                 if (isset($_POST["signup-submit"]))
                                 {
-                                    $firstname = $_POST['name'];
-                                    $lastname = $_POST['surname'];
-                                    $email_address = $_POST['email_address'];
-                                    $confirm_email = $_POST['confirm_email'];
-                                    $password = $_POST['password'];
-                                    $confirm_password = $_POST['confirm_password'];
-                                    $address = $_POST["address"];
-                                    $contact = $_POST['contact'];
+                                    $firstname = htmlentities($_POST['name'], ENT_QUOTES, 'UTF-8');
+                                    $lastname = htmlentities($_POST['surname'], ENT_QUOTES, 'UTF-8');
+                                    $email_address = htmlentities($_POST['email_address'], ENT_QUOTES, 'UTF-8');
+                                    $confirm_email = htmlentities($_POST['confirm_email'], ENT_QUOTES, 'UTF-8');
+                                    $password = htmlentities($_POST['password'], ENT_QUOTES, 'UTF-8');
+                                    $confirm_password = htmlentities($_POST['confirm_password'], ENT_QUOTES, 'UTF-8');
+                                    $address = htmlentities($_POST["address"], ENT_QUOTES, 'UTF-8');
+                                    $contact = htmlentities($_POST['contact'], ENT_QUOTES, 'UTF-8');
 
                                     if(empty($firstname) || empty($lastname) || empty($email_address) || empty($confirm_email) || empty($password) 
                                     || empty($confirm_password) || empty($contact))
