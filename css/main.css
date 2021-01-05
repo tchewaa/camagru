@@ -2,6 +2,27 @@ body {
     background: #f5f5f5;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.form-input {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.login{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding: 2px;
+    margin-top: 20px;
+}
 
 .container {
     width: 100%;
@@ -28,6 +49,16 @@ header h1 {
 
 .menu {
     text-align: right;
+}
+
+div {
+    display: block;
+}
+
+.form-container {
+    margin: 0 auto;
+    width:50%;
+
 }
 
 nav {
@@ -231,8 +262,6 @@ footer {
     display: inline-block;
     text-align: center;
     padding: 2px;
-    box-shadow: #afafaf 2px 2px;
-    background: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
@@ -401,8 +430,6 @@ textarea {
     display: inline-block;
     text-align: left;
     padding: 20px;
-    box-shadow: #afafaf 2px 2px;
-    background: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
@@ -459,12 +486,25 @@ textarea {
     width: 300px;
     display: inline-block;
     padding: 10px;
+    box-shadow: 2px 2px 4px #000000;
+    margin: 10px;
+    color: #000000;
+}
+
+.post-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.sixty-percent{
+    width: 60%;
 }
 
 .image {
     display: block;
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 250px;
 }
 
 .overlay {
@@ -473,9 +513,9 @@ textarea {
     left: 0;
     right: 0;
     /*background-color: firebrick;*/
-    background: rgb(177, 13, 13);
+    background: rgb(161, 144, 144);
     /* Fallback color */
-    background: rgba(177, 17, 17, 0.7);
+    background: rgba(161, 153, 153, 0.7);
     overflow: hidden;
     width: 40%;
     height: 0;
@@ -517,10 +557,10 @@ textarea {
 }
 
 .comments-container {
-    padding: 20px;
+    padding: 2px 2px 2px 20px;
     font-size: 14px;
     text-align: left;
-    border: 1px solid #000;
+    border:none !important;
 }
 
 .pagination {
