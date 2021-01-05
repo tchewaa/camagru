@@ -1,9 +1,7 @@
 
 <?php
     require("includes/header.php");
-    //echo "Printing 1";
     if (isset($_GET["action"]) && $_GET["action"] == "exists"){
-        //echo "Printing 2";
         if (isset($_GET['token']) && isset($_GET['email_address']))
         {
             $email_address = $_GET['email_address'];
@@ -18,7 +16,7 @@
                 if($user === false){
                     header("Location: signin.php");
                 }
-                $_SESSION["temp_mails"] = $_GET['email_address'];
+                $_SESSION["temp_mail"] = $_GET['email_address'];
 
             }catch(PDOException $e){
                 $error = "Error ".$e->getMessage();
@@ -30,7 +28,7 @@
 
         $newPass = htmlentities($_POST['newPassword'], ENT_QUOTES, 'UTF-8');
         $confirmedPass = htmlentities($_POST['confirmPassword'], ENT_QUOTES, 'UTF-8');
-        $email = htmlentities($_SESSION['temp_mails'], ENT_QUOTES, 'UTF-8');
+        $email = htmlentities($_SESSION['temp_mail'], ENT_QUOTES, 'UTF-8');
 
 
         $n_uppercase = htmlentities(preg_match('@[A-Z]@', $newPass), ENT_QUOTES, 'UTF-8');
@@ -61,7 +59,7 @@
         }
         else{
             try{
-
+                $token = NULL;
                 $hashing = password_hash($newPass, PASSWORD_DEFAULT);
                 $stm = $conn->prepare("UPDATE `users` SET `password` = :pass WHERE email_address = :email_address;");
                 $stm->bindValue(':email_address', $email);
@@ -78,10 +76,6 @@
             }
         }
 
-
-
-       
-        
     }
 ?>
 <main>
@@ -95,9 +89,9 @@
                                 <br/>
                                  <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                                 <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
-                                New Password<br/><input type="password" name="newPassword" placeholder="New Password"><br/><br/>
-                                Confirm Password<br/><input type="password" name="confirmPassword" placeholder="Confirm Password"><br/><br/>
-                                <button class ="primary-button" type="submit" name="changePassword">Reset Password</button><br/><br/>
+                                New Password<br/><input class= "form-input" type="password" name="newPassword" placeholder="New Password"><br/><br/>
+                                Confirm Password<br/><input class= "form-input" type="password" name="confirmPassword" placeholder="Confirm Password"><br/><br/>
+                                <button class ="btn primary-button" type="submit" name="changePassword">Reset Password</button><br/><br/>
                             </form>
                         
                     </div>

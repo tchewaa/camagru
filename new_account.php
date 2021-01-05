@@ -17,7 +17,7 @@ if (isset($_POST['signup']))
     $token = "1234567890aqswedxzcfvbgrtyhnjuikmlopPLOKIMJUYHNBTFVRDEXCSWAQZ";
     $token = str_shuffle($token);
     $token = substr($token, 0, 30);
-
+    
     if (empty($fullname) || empty($username) || empty($password) || empty($email_address)){
         $error = "Fill all the fields.";
     }
@@ -41,17 +41,25 @@ if (isset($_POST['signup']))
                 $sql = "INSERT INTO `users` (`user_id`, `username`, `password`, `email_address`, `fullname`,`active`,`token`,`profile_pic_url`, `privacy_level`, `receive_email`) 
                 VALUES (NULL, '".$username."', '".$hashing."', '".$email_address."', '".$fullname."', '".$active."','".$token."','".$profile_pic_url."', '".$privacy_level."','".$receive_email."')";
                 $conn->exec($sql);
-                $message = "
-                        Hi $username, <br/><br/>
-                        Thank you for registering on Camagru, to access Camagru, please <a href='http://127.0.0.1:8080/camagru/verify.php?action=verify&email_address=$email_address&token=$token'>Click Here</a> to verify your email address.<br/><br/>
-                        
-                        Kind Regards<br/><br/><br/>
-                        Camagru Team!<br/>
-                        ";
+                $message = '
+                            <html>
+                            <head>
+                            <title>Camagru Email Verification</title>
+                            </head>
+                            <body>
+                            <p>Hi'. $username.',</p>
+                            <p>Thank you for registering on Camagru, to access Camagru, please <a href=http://localhost/camagru/verify.php?action=verify&email_address='.$email_address.'&token='.$token.'>Click Here</a> to verify your email address.</p>
+                            <p>Kind Regards<br/><br/><br/>
+                               Camagru Team!<br/></p>
+                            </body>
+                            </html>
+                            ';
                 $from = "Camagru";
-                $headers = "From:" . htmlentities(strip_tags($from)); 
-                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-                if(!mail($email_address,"Camagru Email Verification", $message,$headers))
+                $headers[] = 'MIME-Version: 1.0';
+                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+                $headers[] = "From:" . htmlentities(strip_tags($from)); 
+                $headers[] = "Content-type: text/html; charset=iso-8859-1\r\n";
+                if(!mail($email_address,"Camagru Email Verification", $message,implode("\r\n", $headers)))
                 {
                     $error = "Error: Could not send an email address";
                 } else{
@@ -75,14 +83,12 @@ if (isset($_POST['signup']))
                         <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                         <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                                <input type="text" value = "<?php if(isset($_POST['fullname'])){echo $_POST['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
-                                <input type="text" value = "<?php if(isset($_POST['username'])){echo $_POST['username'];}?>" name="username" placeholder="Username"><br/><br/>
-                                <input type="text" value = "<?php if(isset($_POST['email_address'])){echo $_POST['email_address'];}?>" name="email_address" placeholder="Email Address"><br/><br/>
-                                <input type="password" name="password" placeholder="Password"><br/><br/>
-                                <input type="password" name="confirm_password" placeholder="Confirm Password"><br/><br/>
-                                 <button class ="primary-button" type="submit" name="signup">Sign Up</button><br/><br/>
-                                <a href="forgot_password.php">Forgot Password?</a>
-                                <br/><br/>Have an account? <a href="index.php">Sign In</a>
+                                <input class= "form-input" type="text" value = "<?php if(isset($_POST['fullname'])){echo $_POST['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
+                                <input class= "form-input" type="text" value = "<?php if(isset($_POST['username'])){echo $_POST['username'];}?>" name="username" placeholder="Username"><br/><br/>
+                                <input class= "form-input" type="text" value = "<?php if(isset($_POST['email_address'])){echo $_POST['email_address'];}?>" name="email_address" placeholder="Email Address"><br/><br/>
+                                <input class= "form-input" type="password" name="password" placeholder="Password"><br/><br/>
+                                <input class= "form-input" type="password" name="confirm_password" placeholder="Confirm Password"><br/><br/>
+                                 <button class ="btn primary-button" type="submit" name="signup">Register</button><br/><br/>
                             </form>
                     </div>
                 </div>
