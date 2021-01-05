@@ -20,8 +20,12 @@
             $error = "Invalid email address.";
         } 
         else {
-            if (isset($username)) {
+            if (isset($username) || isset($fullname) || isset($email_address) || isset($receive_email)) {
                 $_SESSION["username"] = $username;
+                $_SESSION["fullname"] = $fullname;
+                $_SESSION["email_address"] = $email_address;
+                $_SESSION["receive_email"] = $receive_email;
+
             }
             try{
                 $sql = "UPDATE `users` SET `fullname` = '".$fullname."', `username` = '".$username."', `email_address` = '".$email_address."' , `receive_email` = '".$receive_email."' WHERE `user_id` = '".$_SESSION["user_id"]."'";
@@ -46,14 +50,14 @@
                                                                   
                                  <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                                 <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
-                                Name<br/><input type="text" value = "<?php if(isset($_SESSION['fullname'])){echo $_SESSION['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
-                                Username<br/><input type="text" value = "<?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}?>" name="username" placeholder="Username"><br/><br/>
-                                Email Address<br/><input type="text" value = "<?php if(isset($_SESSION['email_address'])){echo $_SESSION['email_address'];}?>" name="email_address" placeholder="Username"><br/><br/>
+                                Name<br/><input class="sixty-percent form-input" type="text" value = "<?php if(isset($_SESSION['fullname'])){echo $_SESSION['fullname'];}?>" name="fullname" placeholder="Full Name"><br/><br/>
+                                Username<br/><input class="sixty-percent form-input" type="text" value = "<?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}?>" name="username" placeholder="Username"><br/><br/>
+                                Email Address<br/><input class="sixty-percent form-input" type="text" value = "<?php if(isset($_SESSION['email_address'])){echo $_SESSION['email_address'];}?>" name="email_address" placeholder="Username"><br/><br/>
                                 Receive Email Notification ?<br/>
-                                Yes <input type="radio" name="receive_email" value="Yes"<? if ($_SESSION['receive_email'] == "Yes") echo " checked"; ?>> <br/>
-                                No <input type="radio" name="receive_email" value="No"<? if ($_SESSION['receive_email'] == "No") echo " checked"; ?>><br/><br/>
-                                Currently Set to: <?php echo $_SESSION['receive_email']; ?>  <br/><br/><br/>
-                                <button class ="primary-button" type="submit" name="save">Save</button><br/><br/>
+                                 
+                                <input type="radio" name="receive_email" value="No"<?php if($_SESSION['receive_email'] === "No") { echo " checked"; } ?>/> No <br/>
+                                <input type="radio" name="receive_email" value="Yes"<?php if($_SESSION['receive_email'] == "Yes") { echo " checked"; } ?>/> Yes <br/><br/><br/>
+                                <button class ="btn primary-button" type="submit" name="save">Save</button><br/><br/>
                                
                             </form>
                     </div>
