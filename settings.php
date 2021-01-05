@@ -52,7 +52,7 @@
                             {
                                 $error = "Error:<ul class='error' style='margin-left:25px'><li>Password should be at least 8 characters in length.</ll> <li>Password should include at least one upper case letter.</li> <li> Password should have one number, and one special character.</li></ul>";
                             }
-                            else if ($newPass !== $confirmedPass)
+                            else if ($newPassword !== $confirmPassword)
                             {
                                 $error = "Passwords are not the same.";
                             }
@@ -85,7 +85,7 @@
                                                 }
                                             }
                                             else{
-                                                $error = "Error: Old Password not the same";
+                                                $error = "Error: Old Password you provided is not the same";
                                             }
                                         }
                                     }catch(PDOException $e){
@@ -100,10 +100,10 @@
                                 <br/>
                                  <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                                 <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
-                                Old Password<br/><input type="password" name="oldPassword" placeholder="Old Password"><br/><br/>
-                                New Password<br/><input type="password" name="newPassword" placeholder="New Password"><br/><br/>
-                                Confirm Password<br/><input type="password" name="confirmPassword" placeholder="Confirm Password"><br/><br/>
-                                <button class ="primary-button" type="submit" name="changePassword">Change Password</button><br/><br/>
+                                Old Password<br/><input class="sixty-percent form-input" type="password" name="oldPassword" placeholder="Old Password"><br/><br/>
+                                New Password<br/><input class="sixty-percent form-input" type="password" name="newPassword" placeholder="New Password"><br/><br/>
+                                Confirm Password<br/><input class="sixty-percent form-input" type="password" name="confirmPassword" placeholder="Confirm Password"><br/><br/>
+                                <button class ="btn primary-button" type="submit" name="changePassword">Change Password</button><br/><br/>
                             </form>
                         
                     </div>
