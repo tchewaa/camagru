@@ -20,7 +20,7 @@
                             try{
                                 $image_id = $_GET['id'];
                                 $user_id = $_SESSION['user_id'];
-                                $stmt = $conn->prepare("DELETE FROM `image` WHERE `image`.`image_id` = $image_id");
+                                $stmt = $conn->prepare("DELETE FROM `images` WHERE `images`.`image_id` = $image_id");
                                 if($stmt->execute())
                                 {
                                     echo "<script language='javascript'>alert('Post Deleted!!');</script>"; 

@@ -12,8 +12,8 @@
 
                     <?php
                             try{
-                                $limit = 5;
-                                $sql = "SELECT * FROM `image`";
+                                $limit = 6;
+                                $sql = "SELECT * FROM `images`";
                                 $s = $conn->prepare($sql);
                                 $s->execute();
                                 $total_results = $s->rowCount();
@@ -27,14 +27,14 @@
 
                                 $starting_limit = ($page-1)*$limit;
 
-                                $stmt = $conn->prepare("SELECT i.image_id, i.user_id, u.user_id, u.username, i.image_caption, i.image_name, i.image_time FROM `image` i, `users` u  WHERE u.user_id = i.user_id ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
+                                $stmt = $conn->prepare("SELECT i.image_id, i.user_id, u.user_id, u.username, i.image_caption, i.image_name, i.image_time FROM `images` i, `users` u  WHERE u.user_id = i.user_id ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
                                 $stmt->execute();
                                 if ($stmt === false){                                            
                                     $error = "Error: Something went";
                                 }else{ 
                                     foreach ($stmt as $row) {
                                         echo "<a class='link' href='post.php?action=post&id=$row[image_id]'><div class='image-container'>";
-                                        echo "<img src='".$row['image_name']."' width='250px' height='250px' alt='Posts' class='image'>";
+                                        echo "<img src='".$row['image_name']."' width='300px' height='250px' alt='Posts' class='image'>";
                                         echo    "<div class='overlay'>";
                                         echo        "<div class='text'>".$row['image_caption']."</div>";
                                         echo    "</div><br/>";
@@ -52,7 +52,7 @@
                        echo '<br/><br/><br/>';
                         for ($page=1; $page <= $total_pages ; $page++):?>
                             <ul class="pagination">
-                                 <li><a href='<?php echo "?page=$page"; ?>' class="links"><?php  echo $page; ?> </a></li>
+                                 <li><a class="btn" href='<?php echo "?page=$page"; ?>' class="links"><?php  echo $page; ?> </a></li>
                             </ul>
                         <?php endfor; echo '<br/><br/><br/>';?>
                     </div>

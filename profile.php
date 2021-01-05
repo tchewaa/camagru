@@ -47,9 +47,9 @@
                             try{
                                 $user_id = $_SESSION['user_id'];
 
-                                $limit = 5;
+                                $limit = 6;
                                 $sql = "SELECT u.user_id,  i.image_id, i.user_id, i.image_caption, i.image_name, i.image_time
-                                FROM users u, `image` i WHERE u.user_id = i.user_id AND u.user_id = $user_id AND i.user_id = $user_id ORDER BY i.image_time DESC";
+                                FROM users u, `images` i WHERE u.user_id = i.user_id AND u.user_id = $user_id AND i.user_id = $user_id ORDER BY i.image_time DESC";
                                 $s = $conn->prepare($sql);
                                 $s->execute();
                                 $total_results = $s->rowCount();
@@ -66,7 +66,7 @@
 
                                 //$stmt = $conn->prepare("SELECT  *  FROM `image` WHERE `user_id` = 45");
                                 $stmt = $conn->prepare("SELECT u.user_id,  i.image_id, i.user_id, i.image_caption, i.image_name, i.image_time
-FROM users u, `image` i WHERE u.user_id = i.user_id AND u.user_id = $user_id AND i.user_id = $user_id ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
+FROM users u, `images` i WHERE u.user_id = i.user_id AND u.user_id = $user_id AND i.user_id = $user_id ORDER BY i.image_time DESC LIMIT $starting_limit, $limit"); 
                                 $stmt->execute();
                                 //$data = $stmt->fetch(PDO::FETCH_ASSOC);
                                 if ($stmt === false){                                            

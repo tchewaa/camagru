@@ -7,8 +7,7 @@ require("includes/header.php");
         <section class="register-class">
             <div class="container">
                 <div class="row">
-                    <div class="timeline_feeds" style="width:100% !important; text-align:center" class="reg-form login-box">
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="login">
                         <p><span style="border: 2px solid #000 !important" class="icon">C</span><br/><br/><a style="color:#000; font-size:30px" class="link" href="index.php">Camagru</a></p>
                         <br/><br/>
                         <?php
@@ -66,12 +65,14 @@ require("includes/header.php");
                         <p><span class="error"><?php if (isset($error)) echo $error ?></span>
                         <span class="success"><?php if (isset($success)) echo $success ?></span></p><br/>
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                            <input type="text" value = "<?php if (isset($_POST['email_address'])) echo $_POST['email_address'];?>" name="email_address" placeholder="Email Address"><br><br/>
-                            <input type="password" name="password" placeholder="Password"><br/><br/>
-                            <button class ="primary-button" type="submit" name="sign_in">Sign In</button><br/><br/>
+                        <div class="form-container">
+                            <input class="form-input" type="text" value = "<?php if (isset($_POST['email_address'])) echo $_POST['email_address'];?>" name="email_address" placeholder="Email Address"><br><br/>
+                            <input class= "form-input" type="password" name="password" placeholder="Password"><br/><br/>
+                            <button class ="btn primary-button" type="submit" name="sign_in">Login</button><br/><br/>
                             <a href="forgot_password.php">Forgot Password?</a>
-                            <br/><br/>Have an account? <a href="new_account.php">Sign Up</a>
-                        </form><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <br/><br/>Have an account? <a href="new_account.php">Register</a>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -49,21 +49,21 @@
                                 $count = $like->rowCount();
                                 
 
-                                $stmt = $conn->prepare("SELECT * FROM `image` WHERE image_id = '".$image_id."'"); 
+                                $stmt = $conn->prepare("SELECT * FROM `images` WHERE image_id = '".$image_id."'"); 
                                 $stmt->execute();
                                 if ($stmt === false){                                            
                                     $error = "Error: Could not fetch data from the database.";
                                 }else{ 
                                     foreach ($stmt as $row) {
                                         echo "<div class='post-container'>";
-                                        echo    "<img src='".$row['image_name']."' alt='Posts' class='image'>";
+                                        echo    "<p><img src='".$row['image_name']."' alt='Posts' class='post-image'></p>";
                                         echo    "<div class='post-tools'>";
                                         if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
                                         {
                                             echo    "<p></p>";
                                         }else{
                                         $user_id = $_SESSION['user_id'];
-                                        echo    "<a style='text-decoration:none' class = 'primary-button' href='like.php?action=like&userid=$user_id&postid=$image_id'>$count  Like</a> <br/><br/>";
+                                        echo    "<a style='text-decoration:none' class = 'btn primary-button' href='like.php?action=like&userid=$user_id&postid=$image_id'>$count  Like</a> <br/><br/>";
                                         }
                                         echo    "<p></p>";
                                         echo     "<p style='font-size:18px; font-weight:bold'>".$row['image_caption'].".</p>";
@@ -81,12 +81,13 @@
                         <?php 
                         if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['fullname']) && !isset($_SESSION['profile_pic'])  && !isset($_SESSION['email_address']) && !isset($_SESSION['receive_email']))
                         { 
-                            echo '<p class="error" style="font-weight:bold;padding:16px"> You have to be logged in to comment.</p>';
+                            header("Location: signin.php");
+                            //echo '<p class="error" style="font-weight:bold;padding:16px"> You have to be logged in to comment.</p>';
                         }
                         else{
                                   
                            $image_id = $_SESSION["temp_post_id"];
-                           $stmt = $conn->prepare("select u.user_id, u.username, i.image_id, c.image_id, c.user_id, c.comment, c.comment_date from comments c, image i, users u where u.user_id = c.user_id AND i.image_id = '".$image_id."' AND c.image_id = '".$image_id."' ORDER by comment_date DESC");
+                           $stmt = $conn->prepare("select u.user_id, u.username, i.image_id, c.image_id, c.user_id, c.comment, c.comment_date from comments c, images i, users u where u.user_id = c.user_id AND i.image_id = '".$image_id."' AND c.image_id = '".$image_id."' ORDER by comment_date DESC");
                             $stmt->execute();
                             if ($stmt === false){                                            
                                 $error = "Error: Could not fetch data from the database.";
@@ -95,19 +96,14 @@
                                     $time = strtotime(str_replace('/','-',$row["comment_date"]));
                                     $myFormatForView = date("m/d/Y g:i (A)", $time);
                                     echo "<div class='comments-container'>";
-                                    echo     "<p>".$row['username']."</p>";
-                                    echo    "<div class='post-tools'>";
-                                    echo        "<div class=''>";
-                                    echo                $row['comment']."<br/><p class='right'>".$myFormatForView.'</p>';
-                                    echo            "</div>";            
-                                    echo     "</div>";
+                                    echo     "<p title='$myFormatForView'><strong>".$row['username']."</strong>"." ".$row['comment']."</p>";
                                     echo "</div>";
                                 }
                             }
                           echo  "<div class='post-comment'>
                                 <form method='POST' action='post.php?action=post&id='<?php echo $image_id;?>
-                                    <input type='text' style='width:80%; height:200px' name='comment' placeholder='Add Comment' /><br/><br/>
-                                    <button style='width: 10%;' class ='primary-button' type='submit' name='addComment'>Comment</button>
+                                    <input class='form-input' type='text' style='width:80%; height:200px' name='comment' placeholder='Add Comment' /><br/><br/>
+                                    <button style='width: 10%;' class ='btn primary-button' type='submit' name='addComment'>Comment</button>
                                 </form>
                             </div>"; 
                         }

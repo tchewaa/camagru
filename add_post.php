@@ -42,7 +42,7 @@
                                                     }
                                                     else{
                                                         if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
-                                                            $sql = "INSERT INTO `image` (`image_id`, `user_id`, `image_caption`, `image_name`, `image_path`,`image_time`) 
+                                                            $sql = "INSERT INTO `images` (`image_id`, `user_id`, `image_caption`, `image_name`, `image_path`,`image_time`) 
                                                             VALUES (NULL, '".$user_id."', '".$caption."', '".$target_file."', '".$target_dir."', '".$timestamp."')";
                                                             $res = $conn->exec($sql);
                                                             if($res)
@@ -80,7 +80,7 @@
                             <input type='file' name='image' /><br/><br/>
                             <textarea rows="6" name = "caption" placeholder="Caption"></textarea><br/><br/>
                             
-                            <button style="width: 10%" class ="primary-button" type="submit" name="UploadImage">Post</button>
+                            <button style="width: 10%" class ="btn primary-button" type="submit" name="UploadImage">Post</button>
                         </form>                          
                     </div>
                     

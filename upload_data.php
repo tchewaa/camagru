@@ -17,7 +17,7 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['username']) && !isset($_SES
     $data = base64_decode($img);
     $file = $upload_dir . mktime() . ".png";
     if($success = file_put_contents($file, $data)){
-        $sql = "INSERT INTO `image` (`image_id`, `user_id`, `image_caption`, `image_name`, `image_path`,`image_time`) 
+        $sql = "INSERT INTO `images` (`image_id`, `user_id`, `image_caption`, `image_name`, `image_path`,`image_time`) 
         VALUES (NULL, '".$user_id."', '".$caption."', '".$file."', '".$upload_dir."', '".$timestamp."')";
         $res = $conn->exec($sql);
         if($res){
