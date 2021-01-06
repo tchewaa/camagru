@@ -20,12 +20,20 @@
                             try{
                                 $image_id = $_GET['id'];
                                 $user_id = $_SESSION['user_id'];
-                                $stmt = $conn->prepare("DELETE FROM `images` WHERE `images`.`image_id` = $image_id");
-                                if($stmt->execute())
-                                {
-                                    echo "<script language='javascript'>alert('Post Deleted!!');</script>"; 
-                                    header("refresh:0.5; url=explore.php");
-                                }
+
+                                $stmt_image = $conn->prepare("SELECT * FROM `images` WHERE image_id = '".$image_id."'"); 
+                                $stmt_image->execute();
+                                $image = $stmt_image->fetch();
+                                $imageUrl = $image['image_name'];
+                                if(file_exists($imageUrl)){
+                                    unlink($imageUrl);
+                                    $stmt = $conn->prepare("DELETE FROM `images` WHERE `images`.`image_id` = $image_id");
+                                    if($stmt->execute())
+                                    {
+                                        echo "<script language='javascript'>alert('Post Deleted!!');</script>"; 
+                                        header("refresh:0.5; url=profile.php");
+                                    }
+                                }   
                             }catch(PDOException $e)
                             {
                                 echo "Error: ".$e->getMessage();
