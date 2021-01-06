@@ -513,9 +513,9 @@ textarea {
     left: 0;
     right: 0;
     /*background-color: firebrick;*/
-    background: rgb(161, 144, 144);
+    background: rgb(88, 88, 88);
     /* Fallback color */
-    background: rgba(161, 153, 153, 0.7);
+    background: rgba(90, 90, 90, 0.7);
     overflow: hidden;
     width: 40%;
     height: 0;

@@ -34,11 +34,12 @@
                                 }else{ 
                                     foreach ($stmt as $row) {
                                         echo "<a class='link' href='post.php?action=post&id=$row[image_id]'><div class='image-container'>";
+                                        echo   "<p style=' text-align: left; padding: 12px; font-weight: bold;
+                                        '>".$row['username'] ."</p>";
                                         echo "<img src='".$row['image_name']."' width='300px' height='250px' alt='Posts' class='image'>";
                                         echo    "<div class='overlay'>";
                                         echo        "<div class='text'>".$row['image_caption']."</div>";
                                         echo    "</div><br/>";
-                                        echo    $row['username'];
                                         echo "</div></a>";
                                         
                                     }

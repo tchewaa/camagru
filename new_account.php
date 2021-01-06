@@ -47,7 +47,7 @@ if (isset($_POST['signup']))
                             <title>Camagru Email Verification</title>
                             </head>
                             <body>
-                            <p>Hi'. $username.',</p>
+                            <p>Hi '. $username.',</p>
                             <p>Thank you for registering on Camagru, to access Camagru, please <a href=http://localhost/camagru/verify.php?action=verify&email_address='.$email_address.'&token='.$token.'>Click Here</a> to verify your email address.</p>
                             <p>Kind Regards<br/><br/><br/>
                                Camagru Team!<br/></p>
