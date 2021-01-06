@@ -19,7 +19,47 @@
                 VALUES (NULL,'".$image_id."','".$_SESSION['user_id']."', '".$comment."')";
                 if($conn->exec($sql))
                 { 
-                    header("refresh:0.1; url=post.php?action=post&id=$image_id");
+                    //sql statement for the getting the username of the person commenting on the post
+                    $stmt = $conn->prepare("select c.user_id, u.user_id, u.username from comments c, users u where u.user_id = '".$_SESSION['user_id']."' and c.user_id = '".$_SESSION['user_id']."' LIMIT 1");
+                    $stmt->execute();
+                    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    //sql statement for the username receiving the email
+                    $stmt2 = $conn->prepare("select i.user_id, u.user_id, u.username, u.email_address, u.receive_email from images i, users u where u.user_id = i.user_id  LIMIT 1");
+                    $stmt2->execute();
+                    $receiver = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+                    if($receiver['receive_email'] === "Yes")
+                    {
+                        $message = '
+                        <html>
+                        <head>
+                        <title>Notification</title>
+                        </head>
+                        <body>
+                        <p>Hi '. $receiver['username'].',</p>
+                        <p><strong>'.$user['username'].'</strong> has commented on your post.</p>
+                        <p>Kind Regards<br/><br/><br/>
+                           Camagru Team!<br/></p>
+                        </body>
+                        </html>
+                        ';
+                        $from = "Camagru";
+                        $headers[] = 'MIME-Version: 1.0';
+                        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+                        $headers[] = "From:" . htmlentities(strip_tags($from)); 
+                        $headers[] = "Content-type: text/html; charset=iso-8859-1\r\n";
+                        if(!mail($receiver['email_address'],"Notification", $message,implode("\r\n", $headers)))
+                        {
+                            $error = "Error: Could not a notification message";
+                        } else{
+                           header("refresh:0.1; url=post.php?action=post&id=$image_id");
+                       }
+
+                    }else{
+                         header("refresh:0.1; url=post.php?action=post&id=$image_id");
+                    }
+                    
                 }else{
                     echo "<script language='javascript'>alert('Could not add a comment');</script>"; 
                 }
