@@ -98,7 +98,28 @@ Install <a href="https://bitnami.com/stack/mamp">Bitnami MAMP</a>
             <li>Gallery is public, but only a logged user can like and comment photos.</li>
         </ul>
     </li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>UI/UX
+        <ul>
+            <li>The app must be compatible on Firefox( >= 41 ) and Chrome ( >= 46 ). All
+features aboves must work, without any warning, error or log ( except as always for getUserMedia ).</li>
+        </ul>
+    </li>
+    <li>Mobile
+        <ul>
+            <li>When you set the app on mobile mode ( you can do it on Chrome ), elements
+must not overlap each other and have a correct layout.</li>
+        </ul>
+    </li>
+    <li>Security
+        <ul>
+            <li>Password Encryption</li>
+            <li>SQL Injections</li>
+        </ul>
+    </li>
+    <li>BONUS
+        <ul>
+            <li>Did exchanges between client and server are AJAX-ified ?</li>
+            <li>Render it as an animated GIF</li>
+        </ul>
+    </li>
 </ul>
