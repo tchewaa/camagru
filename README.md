@@ -34,6 +34,20 @@ Install <a href="https://bitnami.com/stack/mamp">Bitnami MAMP</a>
         <li>Open browser and Go to url http://localhost/camagru, this will create a database and tables</li>
 </ol>
 
+## Project Structure
+<ul>
+    
+<li>config - database configuration </li>
+<li>css - contains css files for styling</li>
+<li>images - contains images</li>
+<li>includes - contains partial files</li>
+<li>js - contains javascript files for dynamic content</li>
+<li>stickers - contains sticker images</li>
+<li>upload - contains uploaded images of users</li>
+
+</ul>
+
+
 ## Tests
 ### Project Requirements:
 <ul>
