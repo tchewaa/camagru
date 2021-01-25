@@ -26,7 +26,7 @@ Install <a href="https://bitnami.com/stack/mamp">Bitnami MAMP</a>
         <li>To complete the setup, you need to setup a 2 factor varifaction and also create an app password with Gmail, which then it will allow you to send email.</li>
         <li>Restart apache and mysql</li>
         <li>Open browser and Go to url http://localhost/camagru, this will create a database and tables</li>
-<ol>
+</ol>
 
 ## Tests
 ### Project Requirements:
@@ -46,8 +46,20 @@ Install <a href="https://bitnami.com/stack/mamp">Bitnami MAMP</a>
             <li>Queries are managed through PDO instances.</li>
         </ul>
     </li>
-    <li></li>
-    <li></li>
+    <li>User Creation
+        <ul>
+            <li>Application must be able to create users.</li>
+            <li>Form inputs must have validations.</li>
+            <li>User must receive an email to confirm/activate the account with a unique link.</li>
+            <li>User cannot login unless the link has been conformed</li>
+        </ul>
+    </li>
+    <li>User Authentication
+        <ul>
+            <li>Can a user connect with credentials once they have confirmed.</li>
+            <li>Can user reset their password.</li>
+        </ul>
+    </li>
     <li></li>
     <li></li>
     <li></li>
