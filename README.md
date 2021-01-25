@@ -44,7 +44,7 @@ Install <a href="https://bitnami.com/stack/mamp">Bitnami MAMP</a>
 <li>js - contains javascript files for dynamic content</li>
 <li>stickers - contains sticker images</li>
 <li>upload - contains uploaded images of users</li>
-
+<li>[root directory] - contains views/php files</li>
 </ul>
 
 
