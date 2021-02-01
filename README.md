@@ -2,11 +2,12 @@
 Camagru is an Instagram like web application, purely created with html, css, php and javascript.  The aim of the project is to allow users to capture fun moments by allowing them to make basic photo and video editing using your webcam and some predefined images.
 
 ## Getting Started
-### Pre-requisites
+### Requirements
 <ol>
     <li>HTML</li>
     <li>CSS</li>
     <li>Javascript</li>
+    <li>PHP</li>
     <li>Xampp</li>
     <li>MySQL</li>
 </ol>
